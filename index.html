@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pitter-Patter Raindrops • Interactive Storybook</title>
+
+<style>
+/* ===============================
+   COLOR SYSTEM – ICON INSPIRED
+================================ */
+:root{
+  /* Core */
+  --bg: #07080b;
+  --panel: rgba(255,255,255,.06);
+  --panel-soft: rgba(255,255,255,.03);
+  --line: rgba(255,255,255,.14);
+  --shadow: 0 30px 80px rgba(0,0,0,.55);
+
+  /* Typography */
+  --text-main: #f2deaa;          /* warm cream */
+  --text-muted: rgba(242,222,170,.70);
+
+  /* Icon palette */
+  --night: #1a2233;              /* deep navy */
+  --raindrop: #7ebfd1;           /* main raindrop blue */
+  --raindrop-soft: #a8dbe8;      /* highlight blue */
+  --umbrella: #d85b5b;           /* subtle red accent */
+  --leaf: #cfa44a;               /* warm leaf gold */
+
+  /* Derived */
+  --accent-rgb: 126,191,209;
+  --accent-10: rgba(var(--accent-rgb),.10);
+  --accent-12: rgba(var(--accent-rgb),.12);
+  --accent-18: rgba(var(--accent-rgb),.18);
+  --accent-25: rgba(var(--accent-rgb),.25);
+  --accent-35: rgba(var(--accent-rgb),.35);
+  --accent-45: rgba(var(--accent-rgb),.45);
+  --accent-50: rgba(var(--accent-rgb),.50);
+
+  --radius: 22px;
+  --radius-lg: 30px;
+}
+
+/* ===============================
+   BASE
+================================ */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  color: var(--text-main);
+
+  /* Softer, non-geometric blended background */
+  background:
+    radial-gradient(1600px 900px at 20% 10%, rgba(126,191,209,.08), transparent 60%),
+    radial-gradient(1400px 800px at 80% 30%, rgba(216,91,91,.06), transparent 65%),
+    linear-gradient(180deg, #05060a 0%, #07080b 55%, #040509 100%);
+
+  background-attachment: fixed;
+  overflow-x:hidden;
+}
+
+/* Subtle paper grain overlay for luxury / illustrated feel */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.015),
+      rgba(255,255,255,.015) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  mix-blend-mode: soft-light;
+  opacity:.22;
+}
+
+a{ color:inherit; text-decoration:none; }
+
+.wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:26px 20px 70px;
+}
+
+/* ===============================
+   NAV
+================================ */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 18px;
+  border:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border-radius:999px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 16px 40px rgba(0,0,0,.4);
+  position: sticky;
+  top: 14px;
+  z-index: 20;
+}
+
+.brand{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+.brand img{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  border:1px solid var(--accent-35);
+  box-shadow: 0 10px 24px rgba(0,0,0,.5);
+}
+
+.brand strong{ font-size:14px; }
+.brand span{
+  font-size:12px;
+  color:var(--text-muted);
+}
+
+/* ===============================
+   HERO
+================================ */
+.hero{
+  margin-top:32px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:30px;
+}
+
+@media(max-width:900px){
+  .hero{ grid-template-columns:1fr; }
+}
+
+/* Softer card contrast to blend with background */
+.card{
+  border:1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.card.pad{ padding:30px; }
+
+.kicker{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  letter-spacing:.18em;
+  font-size:12px;
+  color:var(--raindrop);
+  text-transform:uppercase;
+}
+
+.kicker::before{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--raindrop);
+  box-shadow:0 0 0 5px var(--accent-12);
+}
+
+h1{
+  margin:16px 0 10px;
+  font-size:clamp(36px,4vw,52px);
+  line-height:1.05;
+}
+
+.lead{
+  font-size:15.5px;
+  line-height:1.7;
+  color:var(--text-muted);
+  max-width:58ch;
+}
+
+/* ===============================
+   PILL FEATURES
+================================ */
+.pillrow{
+  margin-top:22px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.pill{
+  font-size:12px;
+  padding:9px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.04);
+  color: rgba(255,255,255,.78);
+}
+
+/* ===============================
+   STORE BUTTONS
+================================ */
+.storeRow{
+  margin-top:26px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.storeBtn{
+  min-width:200px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 16px;
+  border-radius:20px;
+  border:1px solid var(--accent-50);
+  background: linear-gradient(180deg, rgba(126,191,209,.16), rgba(0,0,0,.25));
+  box-shadow:0 18px 45px rgba(0,0,0,.55);
+  transition:.2s ease;
+}
+
+.storeBtn:hover{ transform:translateY(-2px); }
+
+.storeBtn .mini{
+  width:46px;
+  height:46px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  color: rgba(255,255,255,.86);
+  font-weight: 700;
+}
+
+.storeBtn span{
+  font-size:11px;
+  letter-spacing:.08em;
+  color:var(--text-muted);
+  text-transform: uppercase;
+}
+
+.storeBtn strong{
+  font-size:14px;
+  letter-spacing:.2px;
+}
+
+/* ===============================
+   DEVICE PREVIEW
+================================ */
+.device{
+  display:grid;
+  place-items:center;
+  padding:24px;
+}
+
+.phone{
+  width:min(360px,100%);
+  aspect-ratio:9/16;
+  border-radius:36px;
+  border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  box-shadow:0 30px 90px rgba(0,0,0,.65);
+  position:relative;
+  overflow:hidden;
+}
+
+.phone::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(126,191,209,.16), transparent 48%),
+    radial-gradient(circle at 70% 60%, rgba(216,91,91,.10), transparent 56%),
+    radial-gradient(circle at 50% 110%, rgba(207,164,74,.06), transparent 55%);
+  transform: rotate(12deg);
+}
+
+.screen{
+  position:absolute;
+  inset:12px;
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.18));
+  display:grid;
+  place-items:center;
+}
+
+.previewInner{
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  border-radius: 22px;
+  border:1px dashed rgba(255,255,255,.12);
+  display:grid;
+  place-items:center;
+}
+
+/* 🔥 ICON SIZE + RADIUS UPDATED (75% bigger + 10% more radius) */
+.previewInner img{
+  width:154px;        /* ~75% larger than the original 88px */
+  height:154px;
+  border-radius:38px; /* increased from 26px (~+10%) and more premium */
+  border:1px solid var(--accent-35);
+  box-shadow:0 22px 60px rgba(0,0,0,.65);
+  background:#0b0c10;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+footer{
+  margin-top:40px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.12);
+  font-size:12px;
+  color:var(--text-muted);
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.footerLinks{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.footerLinks a{ color: rgba(242,222,170,.75); }
+.footerLinks a:hover{ color: rgba(242,222,170,.95); }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="nav">
+    <div class="brand">
+      <img src="icon.png" alt="Pitter-Patter Raindrops icon">
+      <div>
+        <strong>Pitter-Patter Raindrops</strong><br>
+        <span>Luxury interactive storybook</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+
+    <div class="card pad">
+      <div class="kicker">Premium Interactive Read-Along</div>
+
+      <h1>Pitter-patter Raindrops<br>a story that feels like a bedtime ritual.</h1>
+
+      <p class="lead">
+        Follow a curious little mouse through cozy rain-kissed scenes,
+        gentle interactions, and soothing narration — a calm, luxurious
+        wind-down experience for young readers.
+      </p>
+
+      <div class="pillrow">
+        <div class="pill">Visual & Sound Interactions</div>
+        <div class="pill">Narrated Read-Along</div>
+        <div class="pill">Educational Mini-Games</div>
+        <div class="pill">No In-App Purchases</div>
+      </div>
+
+      <div class="storeRow">
+        <a class="storeBtn" href="#">
+          <div class="mini"></div>
+          <div>
+            <span>Purchase on</span><br>
+            <strong>App Store</strong>
+          </div>
+        </a>
+
+        <a class="storeBtn" href="#">
+          <div class="mini">▶</div>
+          <div>
+            <span>Download on</span><br>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="card device">
+      <div class="phone">
+        <div class="screen">
+          <div class="previewInner">
+            <img src="icon.png" alt="App preview icon">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div>© 2025 Pitter-Patter Raindrops</div>
+    <div class="footerLinks">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="mailto:hello@yourdomain.com">Contact</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
