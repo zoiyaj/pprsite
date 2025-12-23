@@ -17,6 +17,7 @@
 
   --raindrop:#7ebfd1;
   --accent-rgb:126,191,209;
+  --accent-10:rgba(var(--accent-rgb),.10);
   --accent-12:rgba(var(--accent-rgb),.12);
   --accent-35:rgba(var(--accent-rgb),.35);
   --accent-50:rgba(var(--accent-rgb),.5);
@@ -33,17 +34,19 @@ body{
   color:var(--text-main);
   background:
     radial-gradient(1600px 900px at 20% 10%, rgba(126,191,209,.08), transparent 60%),
+    radial-gradient(1200px 800px at 80% 30%, rgba(242,222,170,.06), transparent 65%),
     linear-gradient(180deg,#05060a 0%,#07080b 55%,#040509 100%);
   background-attachment:fixed;
+  overflow-x:hidden;
 }
+
+a{color:inherit;text-decoration:none}
 
 .wrap{
   max-width:1100px;
   margin:0 auto;
   padding:26px 20px 70px;
 }
-
-a{color:inherit;text-decoration:none}
 
 /* NAV */
 .nav{
@@ -58,6 +61,7 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 16px 40px rgba(0,0,0,.4);
   position:sticky;
   top:14px;
+  z-index:20;
 }
 
 .brand{
@@ -93,6 +97,13 @@ a{color:inherit;text-decoration:none}
   border:1px solid rgba(255,255,255,.14);
   background:rgba(255,255,255,.04);
   font-size:12px;
+  transition:.18s ease;
+  white-space:nowrap;
+}
+.navStore:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.07);
+  border-color:var(--accent-35);
 }
 
 /* HERO */
@@ -101,6 +112,7 @@ a{color:inherit;text-decoration:none}
   display:grid;
   grid-template-columns:1.35fr .85fr;
   gap:30px;
+  align-items:start;
 }
 
 @media(max-width:900px){
@@ -127,6 +139,7 @@ a{color:inherit;text-decoration:none}
 h1{
   margin:16px 0 10px;
   font-size:clamp(36px,4vw,52px);
+  line-height:1.05;
 }
 
 .lead{
@@ -143,6 +156,7 @@ h1{
   letter-spacing:.08em;
   text-transform:uppercase;
   font-size:12px;
+  color:rgba(255,255,255,.88);
 }
 
 .storeRow{
@@ -163,7 +177,9 @@ h1{
   border-radius:20px;
   border:1px solid var(--accent-50);
   background:linear-gradient(180deg,rgba(126,191,209,.16),rgba(0,0,0,.25));
+  transition:.18s ease;
 }
+.storeBtn:hover{ transform:translateY(-2px); }
 
 .storeBtn .mini{
   width:46px;
@@ -172,6 +188,7 @@ h1{
   display:grid;
   place-items:center;
   background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
 }
 
 /* RIGHT COLUMN */
@@ -192,6 +209,8 @@ h1{
   height:154px;
   border-radius:38px;
   border:1px solid var(--accent-35);
+  box-shadow:0 22px 60px rgba(0,0,0,.65);
+  background:#0b0c10;
 }
 
 /* VIDEO */
@@ -211,27 +230,163 @@ h1{
   border-radius:22px;
   border:1px solid rgba(255,255,255,.16);
   overflow:hidden;
+  background:rgba(0,0,0,.2);
 }
 
 .videoEmbed{
   width:100%;
   height:100%;
   border:0;
-  border-radius:22px;
   display:block;
   object-fit:cover;
   background:#000;
 }
 
+/* REVIEWS SECTION (BOTTOM) */
+.reviewsWrap{
+  margin-top:26px;
+  padding:22px;
+}
+
+.reviewsTitle{
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--raindrop);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 14px;
+}
+
+.reviewsTitle::before{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--raindrop);
+  box-shadow:0 0 0 5px var(--accent-12);
+}
+
+.carousel{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.03);
+}
+
+.track{
+  display:flex;
+  transition:transform .5s ease;
+  will-change:transform;
+}
+
+.review{
+  min-width:100%;
+  padding:18px 18px 16px;
+}
+
+.reviewTop{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.nameLoc strong{ font-size:13px; }
+.nameLoc span{ font-size:12px; color:var(--text-muted); }
+
+.stars{
+  font-size:12px;
+  letter-spacing:.12em;
+  color:rgba(255,255,255,.9);
+  white-space:nowrap;
+}
+
+.review h3{
+  margin:0 0 8px;
+  font-size:13px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(242,222,170,.92);
+}
+
+.review p{
+  margin:0;
+  color:rgba(255,255,255,.78);
+  font-size:13px;
+  line-height:1.65;
+  white-space:pre-wrap;
+}
+
+.controlsRow{
+  margin-top:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.dots{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.dotBtn{
+  width:7px;
+  height:7px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.06);
+  cursor:pointer;
+  padding:0;
+}
+
+.dotBtn[aria-current="true"]{
+  background:var(--raindrop);
+  border-color:var(--accent-50);
+  box-shadow:0 0 0 4px var(--accent-10);
+}
+
+.arrows{
+  display:flex;
+  gap:8px;
+}
+
+.arrowBtn{
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.05);
+  color:rgba(255,255,255,.86);
+  border-radius:14px;
+  padding:8px 10px;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.arrowBtn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.08); }
+.arrowBtn:active{ transform:translateY(0); }
+
+@media (prefers-reduced-motion: reduce){
+  .track{ transition:none; }
+}
+
 /* FOOTER */
 footer{
-  margin-top:40px;
+  margin-top:26px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.10);
   font-size:12px;
   color:var(--text-muted);
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
+  gap:12px;
 }
+
+.footerLinks{ display:flex; gap:14px; flex-wrap:wrap; }
+.footerLinks a{ color: rgba(242,222,170,.75); }
+.footerLinks a:hover{ color: rgba(242,222,170,.95); }
 </style>
 </head>
 
@@ -240,7 +395,7 @@ footer{
 
 <header class="nav">
   <div class="brand">
-    <img src="icon.png" alt="">
+    <img src="icon.png" alt="Pitter-Patter Raindrops icon">
     <div>
       <strong>Pitter-Patter Raindrops</strong><br>
       <span>Luxury interactive storybook</span>
@@ -248,6 +403,7 @@ footer{
   </div>
 
   <div class="navActions">
+    <!-- Replace hrefs with your real store URLs -->
     <a class="navStore" href="#"> App Store</a>
     <a class="navStore" href="#">▶ Google Play</a>
   </div>
@@ -258,17 +414,19 @@ footer{
   <!-- LEFT -->
   <div class="card pad">
     <div class="kicker">Premium Interactive Read-Along</div>
-    <h1>Pitter-patter Raindrops<br>a bedtime ritual.</h1>
+
+    <h1>Pitter-patter Raindrops<br>a story that feels like a bedtime ritual.</h1>
 
     <p class="lead">
-      Follow a curious little mouse through cozy scenes,
-      immersive interactions, and soothing narration —
-      a calm wind-down experience for young readers.
+      Follow a curious little mouse through cozy season-kissed scenes,
+      immersive interactions, and soothing narration — a calm, luxurious
+      wind-down experience for young readers.
     </p>
 
     <div class="purchaseHeading">Purchase On</div>
 
     <div class="storeRow">
+      <!-- Replace hrefs with your real store URLs -->
       <a class="storeBtn" href="#"><div class="mini"></div><strong>App Store</strong></a>
       <a class="storeBtn" href="#"><div class="mini">▶</div><strong>Google Play</strong></a>
     </div>
@@ -276,30 +434,150 @@ footer{
 
   <!-- RIGHT -->
   <div class="sideStack">
-
     <div class="card iconCard">
-      <img src="icon.png" alt="">
+      <img src="icon.png" alt="App icon">
     </div>
 
-    <!-- VIDEO CARD -->
-    <div class="card videoCard">
+    <div class="card videoCard" aria-label="Video preview">
       <div class="videoTitle">Video Preview</div>
       <div class="videoFrame">
         <video class="videoEmbed" controls playsinline preload="metadata">
-          <source src="pprvideo.mp4" type="video/mp4">
+          <source src="/pprvideo.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
     </div>
+  </div>
 
+</section>
+
+<!-- REVIEWS CAROUSEL AT BOTTOM -->
+<section class="card reviewsWrap" aria-label="Reviews">
+  <h2 class="reviewsTitle">Loved by families</h2>
+
+  <div class="carousel" id="reviewCarousel">
+    <div class="track" id="reviewTrack">
+
+      <article class="review">
+        <div class="reviewTop">
+          <div class="nameLoc">
+            <strong>Alisha</strong><br>
+            <span>USA</span>
+          </div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+        </div>
+        <h3>SO MUCH FUN</h3>
+        <p>"The animations and games had my daughter HOOKED. So worth the buy just to see the joy it brought her. Well done!"</p>
+      </article>
+
+      <article class="review">
+        <div class="reviewTop">
+          <div class="nameLoc">
+            <strong>Nicole</strong><br>
+            <span>Canada</span>
+          </div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+        </div>
+        <h3>PERFECT READ FOR SETTLING INTO BED</h3>
+        <p>"...The combination of the rhymes and illustrations creates such a lulling atmosphere - making you feel all the ways the little mouse feels: snug, eyes heavy, and wanting to drift to sleep..."</p>
+      </article>
+
+      <article class="review">
+        <div class="reviewTop">
+          <div class="nameLoc">
+            <strong>Stevie</strong><br>
+            <span>Canada</span>
+          </div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+        </div>
+        <h3>LOVELY STORY</h3>
+        <p>"My daughter adores this book! The story is super cute and the illustrations are wonderful."</p>
+      </article>
+
+      <article class="review">
+        <div class="reviewTop">
+          <div class="nameLoc">
+            <strong>Clari</strong><br>
+            <span>USA</span>
+          </div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+        </div>
+        <h3>PERFECT BEDTIME STORY</h3>
+        <p>"By far our favorite bedtime read 😍
+I have it memorized now 😂"</p>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="controlsRow" aria-label="Carousel controls">
+    <div class="dots" id="reviewDots" aria-label="Review dots">
+      <button class="dotBtn" type="button" aria-label="Go to review 1" aria-current="true"></button>
+      <button class="dotBtn" type="button" aria-label="Go to review 2"></button>
+      <button class="dotBtn" type="button" aria-label="Go to review 3"></button>
+      <button class="dotBtn" type="button" aria-label="Go to review 4"></button>
+    </div>
+
+    <div class="arrows">
+      <button class="arrowBtn" type="button" id="prevReview" aria-label="Previous review">‹</button>
+      <button class="arrowBtn" type="button" id="nextReview" aria-label="Next review">›</button>
+    </div>
   </div>
 </section>
 
 <footer>
   <div>© 2025 Pitter-Patter Raindrops</div>
-  <a href="mailto:pitterpatteraindrops.zoiya@gmail.com">Contact Us</a>
+  <div class="footerLinks">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="mailto:pitterpatteraindrops.zoiya@gmail.com?subject=Pitter-Patter%20Raindrops%20Inquiry">Contact Us</a>
+  </div>
 </footer>
 
 </div>
+
+<script>
+(function(){
+  const track = document.getElementById('reviewTrack');
+  const dotsWrap = document.getElementById('reviewDots');
+  const dots = Array.from(dotsWrap.querySelectorAll('.dotBtn'));
+  const prev = document.getElementById('prevReview');
+  const next = document.getElementById('nextReview');
+
+  let index = 0;
+  const total = dots.length;
+
+  function goTo(i){
+    index = (i + total) % total;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, di) => d.setAttribute('aria-current', di === index ? 'true' : 'false'));
+  }
+
+  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+  prev.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+
+  // Auto-advance; pause on hover
+  let timer = setInterval(() => goTo(index + 1), 6000);
+  const carousel = document.getElementById('reviewCarousel');
+
+  carousel.addEventListener('mouseenter', () => { clearInterval(timer); });
+  carousel.addEventListener('mouseleave', () => { timer = setInterval(() => goTo(index + 1), 6000); });
+
+  // Swipe support (mobile)
+  let startX = null;
+  carousel.addEventListener('touchstart', (e) => startX = e.touches[0].clientX, {passive:true});
+  carousel.addEventListener('touchend', (e) => {
+    if(startX === null) return;
+    const endX = e.changedTouches[0].clientX;
+    const dx = endX - startX;
+    if(Math.abs(dx) > 35){
+      goTo(index + (dx < 0 ? 1 : -1));
+    }
+    startX = null;
+  }, {passive:true});
+})();
+</script>
+
 </body>
 </html>
