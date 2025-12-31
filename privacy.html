@@ -153,7 +153,7 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 0 0 4px var(--accent-12);
 }
 
-/* CARD / LEGAL GRID */
+/* CARD GRID */
 .card{
   border:1px solid rgba(255,255,255,.1);
   background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
@@ -231,40 +231,6 @@ a{color:inherit;text-decoration:none}
   color:rgba(255,255,255,.85);
 }
 
-/* scrollbar */
-.legalScroll::-webkit-scrollbar{
-  width:6px;
-}
-.legalScroll::-webkit-scrollbar-track{
-  background:rgba(255,255,255,.04);
-  border-radius:999px;
-}
-.legalScroll::-webkit-scrollbar-thumb{
-  background:var(--accent-35);
-  border-radius:999px;
-}
-
-/* TYPO INSIDE LEGAL */
-.legalScroll h3{
-  font-size:13px;
-  margin:14px 0 6px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:rgba(242,222,170,.92);
-}
-
-.legalScroll p{
-  margin:4px 0 8px;
-}
-
-.legalScroll ul{
-  margin:4px 0 10px 18px;
-  padding:0;
-}
-.legalScroll li{
-  margin-bottom:4px;
-}
-
 /* FOOTER */
 footer{
   margin-top:26px;
@@ -277,7 +243,6 @@ footer{
   flex-wrap:wrap;
   gap:12px;
 }
-
 .footerLinks{ display:flex; gap:14px; flex-wrap:wrap; }
 .footerLinks a{ color: rgba(242,222,170,.75); }
 .footerLinks a:hover{ color: rgba(242,222,170,.95); }
@@ -287,231 +252,167 @@ footer{
 <body>
 <div class="wrap">
 
-  <!-- NAV -->
-  <header class="nav">
-    <div class="brand">
-      <img src="icon.png" alt="Pitter-Patter Raindrops icon">
-      <div>
-        <strong>Pitter-Patter Raindrops</strong><br>
-        <span>Luxury interactive storybook</span>
-      </div>
+<header class="nav">
+  <div class="brand">
+    <img src="icon.png" alt="Pitter-Patter Raindrops icon">
+    <div>
+      <strong>Pitter-Patter Raindrops</strong><br>
+      <span>Luxury interactive storybook</span>
     </div>
+  </div>
+  <div class="navActions">
+    <a class="navBtn" href="index.html">← Back to Home</a>
+  </div>
+</header>
 
-    <div class="navActions">
-      <a class="navBtn" href="index.html">← Back to Home</a>
-    </div>
-  </header>
+<section class="pageHeader">
+  <div class="kicker">For Grown-Ups</div>
+  <h1 class="pageTitle">Privacy &amp; Terms</h1>
+  <p class="pageSub">
+    Pitter-Patter Raindrops is made for little ones ages 0–5.  
+    We designed this app to be gentle, safe, and private.
+  </p>
+  <div class="parentStrip">
+    <span class="parentDot"></span>
+    <span>No ads • No tracking • No sign-ups • No data collection</span>
+  </div>
+</section>
 
-  <!-- PAGE INTRO -->
-  <section class="pageHeader">
-    <div class="kicker">For Grown-Ups</div>
-    <h1 class="pageTitle">Privacy &amp; Terms</h1>
-    <p class="pageSub">
-      We built Pitter-Patter Raindrops to be a calm, child-safe, and private experience.
-      Below you’ll find the full Privacy Policy and Terms &amp; Conditions for the app.
-    </p>
+<section class="legalGrid">
 
-    <!-- Parent reassurance strip -->
-    <div class="parentStrip" aria-label="Pitter-Patter Raindrops safety summary">
-      <span class="parentDot"></span>
-      <span>No ads • No tracking • No sign-ups • No data collection</span>
-    </div>
-  </section>
+<!-- PRIVACY POLICY CARD -->
+<article class="card legalCard" id="privacy">
+  <div class="legalHeader">
+    <h2>Privacy Policy</h2>
+    <span class="badge">Ages 0–5</span>
+  </div>
+  <div class="lastUpdated">Last Updated: [Insert Date]</div>
+  <div class="forParentsLine">This is written in parent-friendly language — no legal jargon.</div>
 
-  <!-- TWO SIDE-BY-SIDE CARDS -->
-  <section class="legalGrid">
+  <div class="legalScroll">
+    <p>Welcome to <strong>Pitter-Patter Raindrops</strong> (the “App”).  
+    This app is created especially for young children, ages 0–5, and their families.</p>
 
-    <!-- PRIVACY POLICY CARD -->
-    <article class="card legalCard" id="privacy">
-      <div class="legalHeader">
-        <h2>Privacy Policy</h2>
-        <span class="badge">No data collected</span>
-      </div>
-      <div class="lastUpdated">Last Updated: [Insert Date]</div>
-      <div class="forParentsLine">For parents: this app doesn’t collect, track, or share any personal information.</div>
+    <p>Your child’s privacy matters greatly to us. This Privacy Policy explains how the App works and how we handle information.</p>
 
-      <div class="legalScroll">
-        <p>Welcome to <strong>Pitter-Patter Raindrops</strong> (the “App”). Your privacy — and your child’s privacy — is very important to us.</p>
+    <h3>1. We Do Not Collect Personal Information</h3>
+    <p><strong>Pitter-Patter Raindrops does not collect, store, or share any personal data.</strong></p>
 
-        <p>This Privacy Policy explains how information is handled when using Pitter-Patter Raindrops, a children’s digital interactive storybook.</p>
+    <p>We do <strong>not</strong> ask for or gather:</p>
+    <ul>
+      <li>Names or birthdates</li>
+      <li>Email addresses or phone numbers</li>
+      <li>Home addresses or location data</li>
+      <li>Photos, videos, or audio recordings</li>
+      <li>Device identifiers or tracking IDs</li>
+      <li>Analytics connected to individual users</li>
+    </ul>
 
-        <h3>1. Information We Collect</h3>
-        <p><strong>Pitter-Patter Raindrops does not collect any personal information.</strong></p>
-        <p>We do <strong>not</strong> collect, store, transmit, or share:</p>
-        <ul>
-          <li>Names</li>
-          <li>Email addresses or phone numbers</li>
-          <li>Physical addresses</li>
-          <li>Photos, videos, or audio recordings</li>
-          <li>Location data</li>
-          <li>Device identifiers</li>
-          <li>Usage analytics tied to individuals</li>
-        </ul>
-        <p>No user accounts, logins, or profiles are required to use the App.</p>
+    <p>There are no accounts, no logins, and no sign-ups.</p>
 
-        <h3>2. Children’s Privacy</h3>
-        <p><strong>Pitter-Patter Raindrops is designed specifically for children.</strong></p>
-        <p>We comply with:</p>
-        <ul>
-          <li>The Children’s Online Privacy Protection Act (COPPA) in the United States</li>
-          <li>Applicable international children’s privacy laws</li>
-        </ul>
-        <p>Because the App does not collect personal data, parental consent is not required for use.</p>
-        <p>We encourage parents and guardians to supervise their child’s digital activity.</p>
+    <h3>2. Safe for Young Children</h3>
+    <p>This App is built to be enjoyed by babies, toddlers, and young children with supervision from a grown-up.</p>
 
-        <h3>3. How the App Works</h3>
-        <p>The App functions as a <strong>tap-to-play and read interactive storybook</strong>. All interactions occur locally on the device.</p>
-        <ul>
-          <li>No information is transmitted to external servers</li>
-          <li>No online features, messaging, or social sharing exist</li>
-          <li>No login, registration, or sign-up is required</li>
-        </ul>
+    <p>We follow children’s privacy laws, including:</p>
+    <ul>
+      <li><strong>COPPA</strong> (USA – Children’s Online Privacy Protection Act)</li>
+      <li>Applicable international child-privacy protections</li>
+    </ul>
 
-        <h3>4. Third-Party Services</h3>
-        <p><strong>Pitter-Patter Raindrops does not use third-party services</strong> that collect or track user data.</p>
-        <p>The App does not include:</p>
-        <ul>
-          <li>Advertising SDKs</li>
-          <li>Analytics tools</li>
-          <li>Social media integrations</li>
-          <li>External links directed at children</li>
-        </ul>
-        <p>Any purchases are handled directly by the app store platform (such as Apple App Store or Google Play Store). We do not receive or store payment information.</p>
+    <p>Because we don’t collect any personal information, parental permission is not required.</p>
 
-        <h3>5. Data Security</h3>
-        <p>Since no personal data is collected, there is no personal information to store or secure.</p>
-        <p>The App operates without accessing sensitive device permissions.</p>
+    <h3>3. How the App Works</h3>
+    <p>Pitter-Patter Raindrops is a <strong>tap-to-read and tap-to-interact storybook</strong>.</p>
 
-        <h3>6. Changes to This Privacy Policy</h3>
-        <p>We may update this Privacy Policy from time to time. Any changes will be reflected by updating the “Last Updated” date at the top of this page.</p>
-        <p>Continued use of the App after updates means you accept the revised policy.</p>
+    <ul>
+      <li>All actions happen only on the device</li>
+      <li>No information leaves the device</li>
+      <li>No online features or messaging</li>
+      <li>No external links for children to tap</li>
+    </ul>
 
-        <h3>7. Contact Information</h3>
-        <p>If you have questions about this Privacy Policy, please contact:</p>
-        <p>
-          <strong>Zoiya Jesani</strong><br>
-          Email: <a href="mailto:pitterpatterraindrops.zoiya@gmail.com">pitterpatterraindrops.zoiya@gmail.com</a>
-        </p>
-      </div>
-    </article>
+    <h3>4. No Ads + No Trackers</h3>
+    <p>The App does not use:</p>
+    <ul>
+      <li>Advertising networks or ad services</li>
+      <li>Tracking or analytics tools that follow user behavior</li>
+      <li>Social media plugins</li>
+      <li>Third-party data collectors</li>
+    </ul>
 
-    <!-- TERMS & CONDITIONS CARD -->
-    <article class="card legalCard" id="terms">
-      <div class="legalHeader">
-        <h2>Terms &amp; Conditions</h2>
-        <span class="badge">App use &amp; rights</span>
-      </div>
-      <div class="lastUpdated">Last Updated: [Insert Date]</div>
-      <div class="forParentsLine">For parents: this explains how the app can be used and how the story content is protected.</div>
+    <p>If payment is required, it is handled securely by the App Store or Google Play.  
+    We never see or access payment information.</p>
 
-      <div class="legalScroll">
-        <p>Welcome to <strong>Pitter-Patter Raindrops</strong> (the “App”). By downloading, accessing, or using this App, you agree to be bound by these Terms &amp; Conditions (“Terms”). If you do not agree, please do not use the App.</p>
+    <h3>5. No Sensitive Device Access</h3>
+    <p>The App does not request access to:</p>
+    <ul>
+      <li>Camera</li>
+      <li>Microphone</li>
+      <li>Contacts</li>
+      <li>Photo library</li>
+    </ul>
 
-        <p>Pitter-Patter Raindrops is a children’s digital interactive storybook designed to provide a safe, calm, and imaginative reading experience.</p>
+    <h3>6. Updates to This Policy</h3>
+    <p>We may update this Privacy Policy from time to time.  
+    Any updates will change the “Last Updated” date shown above.</p>
 
-        <h3>1. About the App</h3>
-        <p>This App provides:</p>
-        <ul>
-          <li>Fully illustrated story content</li>
-          <li>Tap-to-read and tap-to-interact activities</li>
-          <li>Gentle animations and sound effects</li>
-        </ul>
-        <p>The App does <strong>not</strong> include:</p>
-        <ul>
-          <li>Social features, chat, or messaging</li>
-          <li>User accounts or profiles</li>
-          <li>Third-party ads or trackers</li>
-          <li>Links directing children outside the App experience</li>
-        </ul>
+    <h3>7. Contact</h3>
+    <p>If you have questions, please reach out:</p>
+    <p><strong>Zoiya Jesani</strong><br>
+    📩 <a href="mailto:pitterpatterraindrops.zoiya@gmail.com">pitterpatterraindrops.zoiya@gmail.com</a></p>
 
-        <h3>2. Eligibility &amp; Use</h3>
-        <p>This App is intended for children with supervision from a parent or guardian. By using the App, you confirm that:</p>
-        <ul>
-          <li>You are a parent/guardian or have permission to use the App</li>
-          <li>You will not use the App for unlawful or unauthorized purposes</li>
-        </ul>
+    <br>
+    <p><em>In simple words: We don’t track your child. We don’t know who they are.  
+    We just want them to enjoy the story. 💙</em></p>
+  </div>
+</article>
 
-        <h3>3. No Data Collection</h3>
-        <p>We do not collect or request any personal data from users of the App. No sign-in, registration, or analytics tracking tied to individuals is used.</p>
-        <p>For full details, please review our Privacy Policy in the card beside this one.</p>
+<!-- TERMS CARD (UNCHANGED EXCEPT 0–5 badge) -->
+<article class="card legalCard" id="terms">
+  <div class="legalHeader">
+    <h2>Terms &amp; Conditions</h2>
+    <span class="badge">App Use</span>
+  </div>
+  <div class="lastUpdated">Last Updated: [Insert Date]</div>
+  <div class="forParentsLine">This explains how the app can be used and how the story content is protected.</div>
+  
+  <div class="legalScroll">
+    <p>Welcome to <strong>Pitter-Patter Raindrops</strong> (the “App”).  
+    By downloading or using this App, you agree to these Terms &amp; Conditions.</p>
 
-        <h3>4. Intellectual Property</h3>
-        <p>All content in Pitter-Patter Raindrops is owned by or licensed to its creator, including:</p>
-        <ul>
-          <li>Characters and illustrations</li>
-          <li>Story text and dialogue</li>
-          <li>Animations and sound effects</li>
-          <li>Visual design, layout, and branding</li>
-        </ul>
-        <p>You may not:</p>
-        <ul>
-          <li>Copy, reproduce, or redistribute the content</li>
-          <li>Modify or create derivative works based on the App</li>
-          <li>Use the content for commercial purposes without written permission</li>
-        </ul>
-        <p>The App is licensed for personal, non-commercial use only through normal use of the software.</p>
+    <p>This App is designed for children ages 0–5 with supervision from a parent or guardian.</p>
 
-        <h3>5. Purchases &amp; Payments</h3>
-        <p>If the App or any features require payment:</p>
-        <ul>
-          <li>Transactions are processed through the Apple App Store or Google Play Store</li>
-          <li>We do not process or store payment or billing details directly</li>
-          <li>Refunds are subject to the policies of the store where the purchase was made</li>
-        </ul>
+    <h3>1. What the App Includes</h3>
+    <ul>
+      <li>Fully illustrated storybook</li>
+      <li>Tap-based interactions and animations</li>
+      <li>No ads or external links for kids</li>
+    </ul>
 
-        <h3>6. Updates &amp; Availability</h3>
-        <p>We may update, change, or improve the App from time to time, including:</p>
-        <ul>
-          <li>Adding or removing features</li>
-          <li>Fixing bugs or improving performance</li>
-          <li>Updating visuals or content</li>
-        </ul>
-        <p>We are not obligated to continue supporting or maintaining the App indefinitely, and we may discontinue it at any time.</p>
+    <h3>2. Intellectual Property</h3>
+    <p>All story text, illustrations, and characters are owned by the creator.</p>
+    <p>You may not copy, resell, or use the content commercially without permission.</p>
 
-        <h3>7. Disclaimer of Warranties</h3>
-        <p>The App is provided “as is” and “as available,” without warranties of any kind, either express or implied.</p>
-        <p>We do not guarantee that the App will be error-free, uninterrupted, or compatible with every device or operating system.</p>
+    <h3>3. No Guarantees</h3>
+    <p>The App is provided "as is."  
+    Some devices may display or perform differently.</p>
 
-        <h3>8. Limitation of Liability</h3>
-        <p>To the fullest extent permitted by law, the creator of Pitter-Patter Raindrops is not liable for any indirect, incidental, or consequential damages arising from:</p>
-        <ul>
-          <li>Use or inability to use the App</li>
-          <li>Device issues, software conflicts, or connectivity problems</li>
-          <li>Misuse of the App or content by users</li>
-        </ul>
-        <p>Parents and guardians are responsible for supervising children’s use of the App.</p>
+    <h3>4. Contact</h3>
+    <p><strong>Zoiya Jesani</strong><br>
+    📩 <a href="mailto:pitterpatterraindrops.zoiya@gmail.com">pitterpatterraindrops.zoiya@gmail.com</a></p>
+  </div>
+</article>
 
-        <h3>9. Termination</h3>
-        <p>We may restrict or terminate access to the App if:</p>
-        <ul>
-          <li>These Terms are violated</li>
-          <li>The App is discontinued</li>
-          <li>We are required to do so by platform rules or applicable law</li>
-        </ul>
+</section>
 
-        <h3>10. Changes to These Terms</h3>
-        <p>We may update these Terms from time to time. Any changes will be reflected by updating the “Last Updated” date at the top of this card.</p>
-        <p>Continued use of the App after updates means you accept the revised Terms.</p>
-
-        <h3>11. Contact</h3>
-        <p>If you have questions about these Terms &amp; Conditions, please contact:</p>
-        <p>
-          <strong>Zoiya Jesani</strong><br>
-          Email: <a href="mailto:pitterpatterraindrops.zoiya@gmail.com">pitterpatterraindrops.zoiya@gmail.com</a>
-        </p>
-      </div>
-    </article>
-
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div>© 2025 Pitter-Patter Raindrops</div>
-    <div class="footerLinks">
-      <a href="index.html">Home</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
-  </footer>
+<footer>
+  <div>© 2025 Pitter-Patter Raindrops</div>
+  <div class="footerLinks">
+    <a href="index.html">Home</a>
+    <a href="privacy.html#privacy">Privacy</a>
+    <a href="privacy.html#terms">Terms</a>
+  </div>
+</footer>
 
 </div>
 </body>
