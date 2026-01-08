@@ -198,7 +198,7 @@ h1{
   gap:18px;
 }
 
-/* VIDEO (now first card) */
+/* VIDEO */
 .videoCard{ padding:22px; }
 .videoTitle{
   font-size:12px;
@@ -224,7 +224,7 @@ h1{
   background:#000;
 }
 
-/* ICON (now second card) */
+/* ICON */
 .iconCard{
   padding:24px;
   display:grid;
@@ -239,7 +239,7 @@ h1{
   background:#0b0c10;
 }
 
-/* REVIEWS SECTION (BOTTOM) */
+/* REVIEWS */
 .reviewsWrap{
   margin-top:26px;
   padding:22px;
@@ -368,6 +368,38 @@ h1{
   .track{ transition:none; }
 }
 
+/* FEATURES IMAGE ROW */
+.featuresWrap{
+  margin-top:18px;
+  padding:22px;
+}
+
+.featuresGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:14px;
+}
+
+@media(max-width:900px){
+  .featuresGrid{ grid-template-columns:1fr; }
+}
+
+.featureImg{
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.03);
+  overflow:hidden;
+  box-shadow: 0 18px 45px rgba(0,0,0,.35);
+}
+
+.featureImg img{
+  width:100%;
+  height:100%;
+  display:block;
+  aspect-ratio: 16 / 9;
+  object-fit:cover;
+}
+
 /* FOOTER */
 footer{
   margin-top:26px;
@@ -429,7 +461,7 @@ footer{
     </div>
   </div>
 
-  <!-- RIGHT (switched order: video first, icon second) -->
+  <!-- RIGHT -->
   <div class="sideStack">
 
     <div class="card videoCard" aria-label="Video preview">
@@ -437,7 +469,7 @@ footer{
       <div class="videoFrame">
         <video class="videoEmbed" controls playsinline preload="metadata">
           <source src="pprvideo.mp4" type="video/mp4">
-        
+          Your browser does not support the video tag.
         </video>
       </div>
     </div>
@@ -450,7 +482,7 @@ footer{
 
 </section>
 
-<!-- REVIEWS CAROUSEL AT BOTTOM -->
+<!-- REVIEWS CAROUSEL -->
 <section class="card reviewsWrap" aria-label="Reviews">
   <h2 class="reviewsTitle">Loved by families</h2>
 
@@ -520,6 +552,23 @@ I have it memorized now 😂"</p>
     <div class="arrows">
       <button class="arrowBtn" type="button" id="prevReview" aria-label="Previous review">‹</button>
       <button class="arrowBtn" type="button" id="nextReview" aria-label="Next review">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- 3 IMAGES IN A ROW (UNDER REVIEWS) -->
+<section class="card featuresWrap" aria-label="Highlights">
+  <h2 class="reviewsTitle">Features</h2>
+
+  <div class="featuresGrid">
+    <div class="featureImg">
+      <img src="1.png" alt="Tap for animations preview" loading="lazy">
+    </div>
+    <div class="featureImg">
+      <img src="3.png" alt="Educational & interactive mini games preview" loading="lazy">
+    </div>
+    <div class="featureImg">
+      <img src="5.png" alt="Bedtime friendly, no ads preview" loading="lazy">
     </div>
   </div>
 </section>
