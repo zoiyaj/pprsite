@@ -17,8 +17,10 @@
 
   --raindrop:#7ebfd1;
   --accent-rgb:126,191,209;
+  --accent-10:rgba(var(--accent-rgb),.10);
   --accent-12:rgba(var(--accent-rgb),.12);
   --accent-35:rgba(var(--accent-rgb),.35);
+  --accent-50:rgba(var(--accent-rgb),.5);
 
   --radius-lg:30px;
 }
@@ -46,7 +48,7 @@ a{color:inherit;text-decoration:none}
   padding:26px 20px 70px;
 }
 
-/* NAV */
+/* NAV (same style as homepage) */
 .nav{
   display:flex;
   align-items:center;
@@ -62,24 +64,72 @@ a{color:inherit;text-decoration:none}
   z-index:20;
 }
 
-.brand{display:flex;gap:14px;align-items:center}
-.brand img{width:34px;height:34px;border-radius:12px;border:1px solid var(--accent-35)}
-.brand span{font-size:12px;color:var(--text-muted)}
+.brand{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
 
-.navActions{margin-left:auto}
+.brand img{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  border:1px solid var(--accent-35);
+}
+
+.brand span{
+  font-size:12px;
+  color:var(--text-muted);
+}
+
+.navActions{
+  margin-left:auto;
+  display:flex;
+  gap:10px;
+}
+
 .navBtn{
+  display:flex;
+  align-items:center;
+  gap:8px;
   padding:9px 14px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.14);
   background:rgba(255,255,255,.04);
   font-size:12px;
+  transition:.18s ease;
+  white-space:nowrap;
+}
+.navBtn:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.07);
+  border-color:var(--accent-35);
 }
 
 /* PAGE HEADER */
-.pageHeader{margin-top:32px;margin-bottom:18px}
-.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--raindrop)}
-.pageTitle{margin:12px 0 6px;font-size:clamp(28px,3vw,36px)}
-.pageSub{margin:0;font-size:14px;color:var(--text-muted);max-width:62ch}
+.pageHeader{
+  margin-top:32px;
+  margin-bottom:18px;
+}
+
+.kicker{
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--raindrop);
+}
+
+.pageTitle{
+  margin:12px 0 6px;
+  font-size:clamp(28px,3vw,36px);
+}
+
+.pageSub{
+  margin:0;
+  font-size:14px;
+  color:var(--text-muted);
+  max-width:62ch;
+}
 
 /* PARENT STRIP */
 .parentStrip{
@@ -94,13 +144,16 @@ a{color:inherit;text-decoration:none}
   font-size:11px;
   color:var(--text-muted);
 }
+
 .parentDot{
-  width:8px;height:8px;border-radius:50%;
+  width:8px;
+  height:8px;
+  border-radius:50%;
   background:var(--raindrop);
   box-shadow:0 0 0 4px var(--accent-12);
 }
 
-/* CARDS */
+/* CARD / LEGAL GRID */
 .card{
   border:1px solid rgba(255,255,255,.1);
   background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
@@ -115,10 +168,15 @@ a{color:inherit;text-decoration:none}
   grid-template-columns:1fr 1fr;
   gap:20px;
 }
-@media(max-width:900px){.legalGrid{grid-template-columns:1fr}}
+
+@media(max-width:900px){
+  .legalGrid{
+    grid-template-columns:1fr;
+  }
+}
 
 .legalCard{
-  padding:22px;
+  padding:22px 22px 18px;
   display:flex;
   flex-direction:column;
   min-height:340px;
@@ -129,15 +187,20 @@ a{color:inherit;text-decoration:none}
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:10px;
   margin-bottom:10px;
 }
+
 .legalHeader h2{
-  margin:0;font-size:15px;
-  letter-spacing:.14em;text-transform:uppercase;
+  margin:0;
+  font-size:15px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
 }
 
 .badge{
   font-size:10px;
+  text-transform:uppercase;
   letter-spacing:.16em;
   padding:5px 9px;
   border-radius:999px;
@@ -146,8 +209,18 @@ a{color:inherit;text-decoration:none}
   color:var(--text-muted);
 }
 
-.lastUpdated{font-size:11px;color:var(--text-muted);margin-bottom:6px}
-.forParentsLine{font-size:12px;color:var(--text-muted);margin-bottom:10px;font-style:italic}
+.lastUpdated{
+  font-size:11px;
+  color:var(--text-muted);
+  margin-bottom:6px;
+}
+
+.forParentsLine{
+  font-size:12px;
+  color:var(--text-muted);
+  margin-bottom:10px;
+  font-style:italic;
+}
 
 .legalScroll{
   flex:1;
@@ -155,20 +228,61 @@ a{color:inherit;text-decoration:none}
   padding-right:6px;
   font-size:13px;
   line-height:1.7;
-  color:rgba(255,255,255,.88);
+  color:rgba(255,255,255,.85);
 }
 
-/* FAMILIES */
-.familiesSection{margin-top:26px}
-.familiesCard{max-width:780px;margin:0 auto;padding:22px}
+/* scrollbar */
+.legalScroll::-webkit-scrollbar{
+  width:6px;
+}
+.legalScroll::-webkit-scrollbar-track{
+  background:rgba(255,255,255,.04);
+  border-radius:999px;
+}
+.legalScroll::-webkit-scrollbar-thumb{
+  background:var(--accent-35);
+  border-radius:999px;
+}
+
+/* FAMILIES CARD */
+.familiesSection{
+  margin-top:26px;
+}
+.familiesCard{
+  max-width:780px;
+  margin:0 auto;
+  padding:22px 22px 20px;
+}
+.familiesCard h2{
+  margin:0 0 8px;
+  font-size:15px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
 .familiesBadge{
   display:inline-block;
+  margin-top:4px;
   font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
   padding:4px 9px;
   border-radius:999px;
   border:1px solid var(--accent-35);
   background:rgba(0,0,0,.4);
   color:var(--text-muted);
+}
+.familiesBody{
+  margin-top:10px;
+  font-size:13px;
+  line-height:1.7;
+  color:rgba(255,255,255,.88);
+}
+.familiesBody ul{
+  margin:6px 0 10px 18px;
+  padding:0;
+}
+.familiesBody li{
+  margin-bottom:4px;
 }
 
 /* FOOTER */
@@ -181,124 +295,330 @@ footer{
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
+  gap:12px;
 }
+
+.footerLinks{ display:flex; gap:14px; flex-wrap:wrap; }
+.footerLinks a{ color: rgba(242,222,170,.75); }
+.footerLinks a:hover{ color: rgba(242,222,170,.95); }
 </style>
 </head>
 
 <body>
 <div class="wrap">
 
-<header class="nav">
-  <div class="brand">
-    <img src="icon.png" alt="Pitter-Patter Raindrops icon">
-    <div>
-      <strong>Pitter-Patter Raindrops</strong><br>
-      <span>Luxury interactive storybook</span>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="brand">
+      <img src="icon.png" alt="Pitter-Patter Raindrops icon">
+      <div>
+        <strong>Pitter-Patter Raindrops</strong><br>
+        <span>Luxury interactive storybook</span>
+      </div>
     </div>
-  </div>
-  <div class="navActions">
-    <a class="navBtn" href="index.html">← Back to Home</a>
-  </div>
-</header>
 
-<section class="pageHeader">
-  <div class="kicker">For Grown-Ups</div>
-  <h1 class="pageTitle">Privacy &amp; Terms</h1>
-  <p class="pageSub">
-    Pitter-Patter Raindrops is designed to be a calm, private, child-safe experience.
-  </p>
-  <div class="parentStrip">
-    <span class="parentDot"></span>
-    <span>No ads • No tracking • No analytics • No data collection • One-time paid app</span>
-  </div>
-</section>
+    <div class="navActions">
+      <a class="navBtn" href="index.html">← Back to Home</a>
+    </div>
+  </header>
 
-<section class="legalGrid">
-
-<article class="card legalCard" id="privacy">
-  <div class="legalHeader">
-    <h2>Privacy Policy</h2>
-    <span class="badge">No data collected</span>
-  </div>
-  <div class="lastUpdated">Last Updated: January 2026</div>
-  <div class="forParentsLine">
-    For parents: this app does not collect, track, analyze, or transmit any personal or usage data.
-  </div>
-
-  <div class="legalScroll">
-    <p><strong>Pitter-Patter Raindrops does not collect any personal information.</strong></p>
-
-    <p>We do <strong>not</strong> collect, store, share, analyze, or transmit:</p>
-    <ul>
-      <li>Names, emails, or phone numbers</li>
-      <li>Device identifiers or IP addresses</li>
-      <li>Location data</li>
-      <li>Usage analytics or behavior tracking</li>
-      <li>Photos, videos, or audio recordings</li>
-    </ul>
-
-    <h3>Children’s Privacy</h3>
-    <p>This App is designed for children ages 0–5 and complies with COPPA and Google Play Families Policy requirements.</p>
-
-    <h3>How the App Works</h3>
-    <p>All story interactions, animations, and audio playback occur locally on the device. No data is sent to external servers.</p>
-
-    <h3>Purchases</h3>
-    <p>The App is a <strong>one-time paid purchase</strong> handled by the app store. There are <strong>no in-app purchases</strong>.</p>
-
-    <h3>Audio &amp; White Noise</h3>
-    <p>The App includes optional white noise playback. It does not access the microphone or record sound.</p>
-
-    <h3>Contact</h3>
-    <p>
-      <strong>Zoiya Jesani</strong><br>
-      <a href="mailto:pitterpatterraindrops.zoiya@gmail.com">pitterpatterraindrops.zoiya@gmail.com</a>
-    </p>
-  </div>
-</article>
-
-<article class="card legalCard" id="terms">
-  <div class="legalHeader">
-    <h2>Terms &amp; Conditions</h2>
-    <span class="badge">Standard use</span>
-  </div>
-  <div class="lastUpdated">Last Updated: January 2026</div>
-
-  <div class="legalScroll">
-    <p>Pitter-Patter Raindrops is provided as a one-time paid app for personal, non-commercial use.</p>
-
-    <ul>
-      <li>No accounts or sign-ups</li>
-      <li>No ads or tracking</li>
-      <li>No in-app purchases</li>
-      <li>No analytics or data collection</li>
-    </ul>
-
-    <p>Parents are responsible for supervising their child’s use.</p>
-  </div>
-</article>
-
-</section>
-
-<section class="familiesSection">
-  <article class="card familiesCard" id="families">
-    <h2>Families Policy Disclosure</h2>
-    <span class="familiesBadge">Ages 0–5</span>
-
-    <p>
-      Pitter-Patter Raindrops is a one-time paid children’s app with no ads, no analytics,
-      no tracking, no data collection, and no in-app purchases.
+  <!-- PAGE INTRO -->
+  <section class="pageHeader">
+    <div class="kicker">For Grown-Ups</div>
+    <h1 class="pageTitle">Privacy &amp; Terms</h1>
+    <p class="pageSub">
+      We built Pitter-Patter Raindrops to be a calm, child-safe, and private experience.
+      Below you’ll find the full Privacy Policy, Terms &amp; Conditions, and our Google Play Families Policy disclosure.
     </p>
 
-    <p>
-      All content is self-contained and designed for calm, supervised use by young children.
-    </p>
-  </article>
-</section>
+    <!-- Parent reassurance strip -->
+    <div class="parentStrip" aria-label="Pitter-Patter Raindrops safety summary">
+      <span class="parentDot"></span>
+      <span>No ads • No tracking • No analytics • No sign-ups • No data collection</span>
+    </div>
+  </section>
 
-<footer>
-  <div>© 2026 Pitter-Patter Raindrops</div>
-</footer>
+  <!-- TWO SIDE-BY-SIDE CARDS -->
+  <section class="legalGrid">
+
+    <!-- PRIVACY POLICY CARD -->
+    <article class="card legalCard" id="privacy">
+      <div class="legalHeader">
+        <h2>Privacy Policy</h2>
+        <span class="badge">No data collected</span>
+      </div>
+      <div class="lastUpdated">Last Updated: [Insert Date]</div>
+      <div class="forParentsLine">
+        For parents: this app doesn’t collect, track, analyze, store, share, or transmit any personal information or usage data.
+        It includes optional white noise playback — no sound is recorded and you control volume and duration.
+      </div>
+
+      <div class="legalScroll">
+        <p>Welcome to <strong>Pitter-Patter Raindrops</strong> (the “App”). Your privacy — and your child’s privacy — is very important to us.</p>
+
+        <p>This Privacy Policy explains how information is handled when using Pitter-Patter Raindrops, a children’s digital interactive storybook.</p>
+
+        <h3>1. Information We Collect</h3>
+        <p><strong>Pitter-Patter Raindrops does not collect any personal information.</strong></p>
+        <p>We do <strong>not</strong> collect, store, transmit, analyze, or share:</p>
+        <ul>
+          <li>Names</li>
+          <li>Email addresses or phone numbers</li>
+          <li>Physical addresses</li>
+          <li>Photos, videos, or audio recordings</li>
+          <li>Location data</li>
+          <li>Device identifiers</li>
+          <li>IP addresses</li>
+          <li>Usage analytics, behavioral tracking, or telemetry</li>
+        </ul>
+        <p>No user accounts, logins, or profiles are required to use the App.</p>
+
+        <h3>2. Children’s Privacy</h3>
+        <p><strong>Pitter-Patter Raindrops is designed specifically for children.</strong></p>
+        <p>We comply with:</p>
+        <ul>
+          <li>The Children’s Online Privacy Protection Act (COPPA) in the United States</li>
+          <li>Applicable international children’s privacy laws</li>
+        </ul>
+        <p>Because the App does not collect personal data, parental consent is not required for use.</p>
+        <p>We encourage parents and guardians to supervise their child’s digital activity.</p>
+
+        <h3>3. How the App Works</h3>
+        <p>The App functions as a <strong>tap-to-play and read interactive storybook</strong>. All interactions occur locally on the device.</p>
+        <ul>
+          <li>No information is transmitted to external servers</li>
+          <li>No online features, messaging, or social sharing exist</li>
+          <li>No login, registration, or sign-up is required</li>
+        </ul>
+
+        <h3>4. Third-Party Services</h3>
+        <p><strong>Pitter-Patter Raindrops does not use third-party services</strong> that collect or track user data.</p>
+        <p>The App does not include:</p>
+        <ul>
+          <li>Advertising SDKs</li>
+          <li>Analytics tools</li>
+          <li>Tracking or profiling technologies</li>
+          <li>Social media integrations</li>
+          <li>External links directed at children</li>
+        </ul>
+
+        <h3>5. Purchases &amp; Payments</h3>
+        <p><strong>Pitter-Patter Raindrops is a one-time paid purchase</strong> handled by the Apple App Store or Google Play Store.</p>
+        <ul>
+          <li>The App contains <strong>no in-app purchases</strong>.</li>
+          <li>We do <strong>not</strong> receive or store payment information.</li>
+          <li>Refunds are subject to the policies of the store where the purchase was made.</li>
+        </ul>
+
+        <h3>6. Data Security</h3>
+        <p>Since no personal data is collected or transmitted, there is no personal information for us to store on servers.</p>
+        <p>The App operates without accessing sensitive device permissions.</p>
+
+        <!-- AUDIO / WHITE NOISE SECTION -->
+        <h3>7. Audio &amp; White Noise Playback</h3>
+        <p>Pitter-Patter Raindrops includes an optional <strong>white noise</strong> audio feature designed to support calm rest after the story ends.</p>
+        <ul>
+          <li>The App plays audio only and does <strong>not</strong> record, listen to, or monitor sound.</li>
+          <li>The App does <strong>not</strong> access the device microphone.</li>
+          <li>No audio data is collected, stored, transmitted, or shared.</li>
+          <li>All audio playback happens locally on the device.</li>
+        </ul>
+        <p>Parents and guardians control when audio playback begins and ends. The App may offer timed playback (for example, up to 2 hours) or continuous playback (until manually stopped).</p>
+
+        <h3>8. Recommended Audio Use for Young Children (Ages 0–5)</h3>
+        <p>To support safe listening for infants and young children, we recommend:</p>
+        <ul>
+          <li>Keeping the device at least <strong>6–10 feet</strong> away from the child during sleep.</li>
+          <li>Using <strong>low volume</strong> levels that are soft and gentle.</li>
+          <li>Avoiding placement of the device directly in a crib or bed.</li>
+          <li>Using white noise as calming background sound, not constant stimulation.</li>
+        </ul>
+        <p>Parents and guardians are responsible for selecting appropriate settings based on their child’s needs.</p>
+
+        <h3>9. Changes to This Privacy Policy</h3>
+        <p>We may update this Privacy Policy from time to time. Any changes will be reflected by updating the “Last Updated” date at the top of this page.</p>
+        <p>Continued use of the App after updates means you accept the revised policy.</p>
+
+        <h3>10. Contact Information</h3>
+        <p>If you have questions about this Privacy Policy, please contact:</p>
+        <p>
+          <strong>Zoiya Jesani</strong><br>
+          Email: <a href="mailto:pitterpatterraindrops.zoiya@gmail.com">pitterpatterraindrops.zoiya@gmail.com</a>
+        </p>
+      </div>
+    </article>
+
+    <!-- TERMS & CONDITIONS CARD -->
+    <article class="card legalCard" id="terms">
+      <div class="legalHeader">
+        <h2>Terms &amp; Conditions</h2>
+        <span class="badge">App use &amp; rights</span>
+      </div>
+      <div class="lastUpdated">Last Updated: [Insert Date]</div>
+      <div class="forParentsLine">
+        For parents: this explains how the app can be used and how the story content is protected.
+        It also includes guidance for optional white noise playback.
+        This app does not collect or transmit any data.
+      </div>
+
+      <div class="legalScroll">
+        <p>Welcome to <strong>Pitter-Patter Raindrops</strong> (the “App”). By downloading, accessing, or using this App, you agree to be bound by these Terms &amp; Conditions (“Terms”). If you do not agree, please do not use the App.</p>
+
+        <p>Pitter-Patter Raindrops is a children’s digital interactive storybook designed to provide a safe, calm, and imaginative reading experience.</p>
+
+        <h3>1. About the App</h3>
+        <p>This App provides:</p>
+        <ul>
+          <li>Fully illustrated story content</li>
+          <li>Tap-to-read and tap-to-interact activities</li>
+          <li>Gentle animations and sound effects</li>
+          <li>Optional white noise playback after the story ends</li>
+        </ul>
+        <p>The App does <strong>not</strong> include:</p>
+        <ul>
+          <li>Social features, chat, or messaging</li>
+          <li>User accounts or profiles</li>
+          <li>Third-party ads or trackers</li>
+          <li>Analytics, telemetry, or usage tracking</li>
+          <li>Links directing children outside the App experience</li>
+          <li>In-app purchases</li>
+        </ul>
+
+        <h3>2. Audio Playback &amp; White Noise Feature</h3>
+        <p>Pitter-Patter Raindrops may include optional background audio or white noise playback intended to support calm rest after storytime.</p>
+        <p>By using this feature, you acknowledge that:</p>
+        <ul>
+          <li>Audio playback is optional and controlled by a parent or guardian.</li>
+          <li>The App does not monitor, record, or respond to audio.</li>
+          <li>Playback duration and volume are controlled by the device settings and the selections made by the parent or guardian.</li>
+        </ul>
+        <p>The creator of Pitter-Patter Raindrops is not responsible for volume levels selected by the user, extended playback duration chosen by a parent or guardian, or device placement during use.</p>
+
+        <h3>3. Health &amp; Safety Disclaimer (Audio Use)</h3>
+        <p>White noise and audio playback are provided for comfort only and are <strong>not</strong> medical advice or a sleep treatment.</p>
+        <p>Parents and guardians are encouraged to follow pediatric sleep and hearing safety guidance, monitor volume levels and playback duration, and discontinue use if a child appears uncomfortable or distressed.</p>
+
+        <h3>4. Eligibility &amp; Use</h3>
+        <p>This App is intended for children with supervision from a parent or guardian. By using the App, you confirm that:</p>
+        <ul>
+          <li>You are a parent/guardian or have permission to use the App</li>
+          <li>You will not use the App for unlawful or unauthorized purposes</li>
+        </ul>
+
+        <h3>5. Privacy &amp; No Data Collection</h3>
+        <p>The App does <strong>not</strong> collect, track, analyze, store, share, or transmit any personal data or usage data.</p>
+        <p>For full details, please review our Privacy Policy in the card beside this one.</p>
+
+        <h3>6. Intellectual Property</h3>
+        <p>All content in Pitter-Patter Raindrops is owned by or licensed to its creator, including:</p>
+        <ul>
+          <li>Characters and illustrations</li>
+          <li>Story text and dialogue</li>
+          <li>Animations and sound effects</li>
+          <li>Visual design, layout, and branding</li>
+        </ul>
+        <p>You may not:</p>
+        <ul>
+          <li>Copy, reproduce, or redistribute the content</li>
+          <li>Modify or create derivative works based on the App</li>
+          <li>Use the content for commercial purposes without written permission</li>
+        </ul>
+        <p>The App is licensed for personal, non-commercial use only through normal use of the software.</p>
+
+        <h3>7. Purchases &amp; Payments</h3>
+        <p>The App is a <strong>one-time paid purchase</strong> handled by the Apple App Store or Google Play Store.</p>
+        <ul>
+          <li>No in-app purchases</li>
+          <li>No subscriptions</li>
+          <li>We do not store payment details</li>
+        </ul>
+
+        <h3>8. Updates &amp; Availability</h3>
+        <p>We may update, change, or improve the App from time to time, including:</p>
+        <ul>
+          <li>Adding or removing features</li>
+          <li>Fixing bugs or improving performance</li>
+          <li>Updating visuals or content</li>
+        </ul>
+        <p>We are not obligated to continue supporting or maintaining the App indefinitely, and we may discontinue it at any time.</p>
+
+        <h3>9. Disclaimer of Warranties</h3>
+        <p>The App is provided “as is” and “as available,” without warranties of any kind, either express or implied.</p>
+        <p>We do not guarantee that the App will be error-free, uninterrupted, or compatible with every device or operating system.</p>
+
+        <h3>10. Limitation of Liability</h3>
+        <p>To the fullest extent permitted by law, the creator of Pitter-Patter Raindrops is not liable for any indirect, incidental, or consequential damages arising from:</p>
+        <ul>
+          <li>Use or inability to use the App</li>
+          <li>Device issues, software conflicts, or connectivity problems</li>
+          <li>Misuse of the App or content by users</li>
+        </ul>
+        <p>Parents and guardians are responsible for supervising children’s use of the App.</p>
+
+        <h3>11. Termination</h3>
+        <p>We may restrict or terminate access to the App if:</p>
+        <ul>
+          <li>These Terms are violated</li>
+          <li>The App is discontinued</li>
+          <li>We are required to do so by platform rules or applicable law</li>
+        </ul>
+
+        <h3>12. Changes to These Terms</h3>
+        <p>We may update these Terms from time to time. Any changes will be reflected by updating the “Last Updated” date at the top of this card.</p>
+        <p>Continued use of the App after updates means you accept the revised Terms.</p>
+
+        <h3>13. Contact</h3>
+        <p>If you have questions about these Terms &amp; Conditions, please contact:</p>
+        <p>
+          <strong>Zoiya Jesani</strong><br>
+          Email: <a href="mailto:pitterpatterraindrops.zoiya@gmail.com">pitterpatterraindrops.zoiya@gmail.com</a>
+        </p>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- FAMILIES POLICY CARD -->
+  <section class="familiesSection">
+    <article class="card familiesCard" id="families">
+      <h2>Families Policy Disclosure</h2>
+      <span class="familiesBadge">Ages 0–5 • Child-safe</span>
+
+      <div class="familiesBody">
+        <p><strong>Pitter-Patter Raindrops</strong> is designed for young children ages <strong>0–5</strong> and is intended to fully comply with the Google Play <strong>Families Policy Requirements</strong> and children’s privacy laws, including <strong>COPPA</strong> (Children’s Online Privacy Protection Act in the United States).</p>
+
+        <p>To support a safe and gentle experience for little ones:</p>
+        <ul>
+          <li>The App contains <strong>no advertising</strong>.</li>
+          <li>The App performs <strong>no data collection, tracking, analytics, or profiling</strong>.</li>
+          <li>The App uses <strong>no analytics SDKs</strong> or third-party tracking tools.</li>
+          <li>The App includes <strong>no social features</strong> and <strong>no external links</strong> that children can tap.</li>
+          <li>The App does <strong>not</strong> access or use <strong>location services</strong>.</li>
+          <li>The App contains <strong>no user-generated content</strong>.</li>
+          <li>The App is a <strong>one-time paid purchase</strong> through the app store and contains <strong>no in-app purchases</strong>.</li>
+        </ul>
+
+        <p>The experience is fully self-contained, offline, and focused on calm, interactive storytelling.</p>
+
+        <p><strong>Audio Note:</strong> The App may include optional white noise playback after the story ends. The App does not record audio, does not access the microphone, and does not collect any audio-related data. Parents/guardians control volume and playback duration.</p>
+
+        <p>Parents and guardians are encouraged to supervise their child’s use of the App and to reach out if they have any questions about safety or compliance.</p>
+
+        <p>For more details, please review the <a href="#privacy">Privacy Policy</a> and <a href="#terms">Terms &amp; Conditions</a> above.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2025 Pitter-Patter Raindrops</div>
+    <div class="footerLinks">
+      <a href="index.html">Home</a>
+      <a href="privacy.html#privacy">Privacy</a>
+      <a href="privacy.html#terms">Terms</a>
+      <a href="privacy.html#families">Families Policy</a>
+    </div>
+  </footer>
 
 </div>
 </body>
