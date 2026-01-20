@@ -6,7 +6,6 @@
 <title>Pitter-Patter Raindrops • Store Policies</title>
 
 <style>
-/* --- SAME STYLES AS BEFORE (unchanged) --- */
 :root{
   --bg:#07080b;
   --panel:rgba(255,255,255,.06);
@@ -26,6 +25,7 @@
 
 *{box-sizing:border-box}
 html,body{height:100%}
+
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
@@ -35,12 +35,72 @@ body{
     radial-gradient(1200px 800px at 80% 30%, rgba(242,222,170,.06), transparent 65%),
     linear-gradient(180deg,#05060a 0%,#07080b 55%,#040509 100%);
   background-attachment:fixed;
+  overflow-x:hidden;
 }
 
-.wrap{max-width:1100px;margin:0 auto;padding:26px 20px 70px;}
 a{color:inherit;text-decoration:none}
 
-/* cards/grid same as before */
+.wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:26px 20px 70px;
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 18px;
+  border:1px solid rgba(255,255,255,.1);
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border-radius:999px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 16px 40px rgba(0,0,0,.4);
+  position:sticky;
+  top:14px;
+  z-index:20;
+}
+
+.brand{display:flex;gap:14px;align-items:center}
+.brand img{width:34px;height:34px;border-radius:12px;border:1px solid var(--accent-35)}
+.brand span{font-size:12px;color:var(--text-muted)}
+
+.navActions{margin-left:auto}
+.navBtn{
+  padding:9px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.04);
+  font-size:12px;
+}
+
+/* PAGE HEADER */
+.pageHeader{margin-top:32px;margin-bottom:18px}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--raindrop)}
+.pageTitle{margin:12px 0 6px;font-size:clamp(28px,3vw,36px)}
+.pageSub{margin:0;font-size:14px;color:var(--text-muted);max-width:62ch}
+
+/* PARENT STRIP */
+.parentStrip{
+  margin-top:16px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(0,0,0,.45);
+  font-size:11px;
+  color:var(--text-muted);
+}
+.parentDot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--raindrop);
+  box-shadow:0 0 0 4px var(--accent-12);
+}
+
+/* CARD GRID */
 .card{
   border:1px solid rgba(255,255,255,.1);
   background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
@@ -48,37 +108,81 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 30px 80px rgba(0,0,0,.55);
   backdrop-filter:blur(14px);
 }
+
 .legalGrid{
   margin-top:16px;
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:20px;
 }
-@media(max-width:900px){.legalGrid{grid-template-columns:1fr}}
+
+@media(max-width:900px){
+  .legalGrid{grid-template-columns:1fr;}
+}
+
 .legalCard{
   padding:22px;
   display:flex;
   flex-direction:column;
   max-height:520px;
 }
+
 .legalHeader{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   margin-bottom:10px;
 }
-.legalScroll{
-  overflow-y:auto;
-  font-size:13px;
-  line-height:1.7;
-  color:rgba(255,255,255,.88);
+
+.legalHeader h2{
+  margin:0;
+  font-size:15px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
 }
+
 .badge{
   font-size:10px;
-  padding:4px 9px;
+  letter-spacing:.16em;
+  padding:5px 9px;
   border-radius:999px;
   border:1px solid var(--accent-35);
   background:rgba(0,0,0,.4);
   color:var(--text-muted);
+}
+
+.lastUpdated{
+  font-size:11px;
+  color:var(--text-muted);
+  margin-bottom:6px;
+}
+
+.forParentsLine{
+  font-size:12px;
+  color:var(--text-muted);
+  margin-bottom:10px;
+  font-style:italic;
+}
+
+.legalScroll{
+  flex:1;
+  overflow-y:auto;
+  padding-right:6px;
+  font-size:13px;
+  line-height:1.7;
+  color:rgba(255,255,255,.88);
+}
+
+/* FOOTER */
+footer{
+  margin-top:26px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.10);
+  font-size:12px;
+  color:var(--text-muted);
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
 }
 </style>
 </head>
@@ -86,11 +190,34 @@ a{color:inherit;text-decoration:none}
 <body>
 <div class="wrap">
 
-<h1>Privacy & Store Policies</h1>
+<header class="nav">
+  <div class="brand">
+    <img src="icon.png" alt="Pitter-Patter Raindrops icon">
+    <div>
+      <strong>Pitter-Patter Raindrops</strong><br>
+      <span>Luxury interactive storybook</span>
+    </div>
+  </div>
+  <div class="navActions">
+    <a class="navBtn" href="index.html">← Back to Home</a>
+  </div>
+</header>
 
+<section class="pageHeader">
+  <div class="kicker">For Grown-Ups</div>
+  <h1 class="pageTitle">Privacy & Store Policies</h1>
+  <p class="pageSub">
+    Platform-specific privacy disclosures for parents and guardians.
+  </p>
+  <div class="parentStrip">
+    <span class="parentDot"></span>
+    <span>One-time paid app • No ads • No sign-ups • Child-safe by design</span>
+  </div>
+</section>
+
+<!-- ROW 1: APPLE + TERMS -->
 <section class="legalGrid">
 
-<!-- APPLE STORE POLICY -->
 <article class="card legalCard">
   <div class="legalHeader">
     <h2>Apple Store Policy</h2>
@@ -98,23 +225,17 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <div class="legalScroll">
-    <p><strong>Pitter-Patter Raindrops (Apple App Store version)</strong> does not collect, track, store, or transmit any personal or usage data.</p>
-
+    <p><strong>Apple App Store version</strong> of Pitter-Patter Raindrops does not collect, track, store, analyze, or transmit any personal or usage data.</p>
     <ul>
       <li>No analytics</li>
       <li>No tracking</li>
       <li>No third-party SDKs</li>
       <li>No network transmission</li>
-      <li>No accounts or sign-ups</li>
     </ul>
-
-    <p>All story interactions, animations, and optional white noise playback occur entirely on the device.</p>
-
     <p>The app is a <strong>one-time paid purchase</strong> with <strong>no in-app purchases</strong>.</p>
   </div>
 </article>
 
-<!-- TERMS -->
 <article class="card legalCard">
   <div class="legalHeader">
     <h2>Terms & Conditions</h2>
@@ -124,15 +245,18 @@ a{color:inherit;text-decoration:none}
   <div class="legalScroll">
     <p>This app is licensed for personal, non-commercial use.</p>
     <ul>
-      <li>No redistribution</li>
-      <li>No modification</li>
-      <li>No resale</li>
+      <li>No redistribution or resale</li>
+      <li>No modification or derivative works</li>
+      <li>Parental supervision required</li>
     </ul>
-    <p>Parents and guardians are responsible for supervising use.</p>
   </div>
 </article>
 
-<!-- GOOGLE PLAY POLICY -->
+</section>
+
+<!-- ROW 2: GOOGLE + FAMILIES -->
+<section class="legalGrid">
+
 <article class="card legalCard">
   <div class="legalHeader">
     <h2>Google Play Store Policy</h2>
@@ -140,52 +264,39 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <div class="legalScroll">
-    <p><strong>Pitter-Patter Raindrops (Google Play version)</strong> may include limited Firebase services to support app quality and optional communication.</p>
-
-    <h3>Firebase Services Used</h3>
+    <p><strong>Google Play version</strong> may include limited Firebase services:</p>
     <ul>
-      <li><strong>Firebase Analytics</strong> – to understand general app usage and improve performance</li>
-      <li><strong>Firebase Cloud Messaging</strong> – to deliver optional notifications (controlled by device settings)</li>
+      <li><strong>Firebase Analytics</strong> – app performance and feature usage</li>
+      <li><strong>Firebase Cloud Messaging</strong> – optional notifications</li>
     </ul>
-
-    <h3>Data Handling</h3>
-    <ul>
-      <li>No advertising or ad targeting</li>
-      <li>No user accounts</li>
-      <li>No sale of personal data</li>
-      <li>Data used only in aggregated form</li>
-    </ul>
-
-    <p>The app remains a <strong>one-time paid purchase</strong> with <strong>no in-app purchases</strong>.</p>
+    <p>No ads, no profiling, no sale of data.</p>
+    <p>One-time paid app with <strong>no in-app purchases</strong>.</p>
   </div>
 </article>
 
-</section>
+<article class="card legalCard">
+  <div class="legalHeader">
+    <h2>Families Policy</h2>
+    <span class="badge">Ages 0–5</span>
+  </div>
 
-<!-- FAMILIES POLICY -->
-<section style="margin-top:30px">
-  <article class="card" style="padding:22px">
-    <h2>Families Policy Disclosure</h2>
-
-    <p><strong>Apple App Store:</strong>  
-    No analytics, no tracking, no data collection, fully offline experience.</p>
-
-    <p><strong>Google Play Store:</strong>  
-    Limited Firebase Analytics and Cloud Messaging may be used for stability and optional notifications. No ads, no profiling, no sale of data.</p>
-
+  <div class="legalScroll">
+    <p><strong>Apple App Store:</strong> No analytics, no tracking, fully offline.</p>
+    <p><strong>Google Play Store:</strong> Limited Firebase usage, no ads or profiling.</p>
     <ul>
       <li>No advertising</li>
       <li>No social features</li>
       <li>No user-generated content</li>
       <li>One-time paid app</li>
     </ul>
+    <p>Complies with COPPA and Google Play Families Policy.</p>
+  </div>
+</article>
 
-    <p>This app is designed for children ages 0–5 and complies with COPPA and Google Play Families requirements.</p>
-  </article>
 </section>
 
-<footer style="margin-top:30px;font-size:12px;opacity:.7">
-  © 2026 Pitter-Patter Raindrops
+<footer>
+  <div>© 2026 Pitter-Patter Raindrops</div>
 </footer>
 
 </div>
