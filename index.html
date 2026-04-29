@@ -7,163 +7,235 @@
 
 <style>
 :root{
-  --bg:#3F4A66;
-  --panel:rgba(255,255,255,.06);
-  --line:rgba(255,255,255,.14);
-
-  --text-main:#F5F1E8;
-  --text-muted:rgba(245,241,232,.7);
-
-  --teal:#7ebfd1;
-  --yellow:#F6C85F;
-  --red:#E45757;
-
-  --radius:24px;
+  --night:#39445f;
+  --night-2:#2d354e;
+  --raindrop:#7fb8c7;
+  --raindrop-soft:#c6edf2;
+  --umbrella:#e94f57;
+  --leaf:#d69a3c;
+  --glow:#ffd86b;
+  --cream:#fff8ea;
+  --ink:#222431;
+  --mist:rgba(255,255,255,.14);
+  --shadow:0 24px 70px rgba(17,22,38,.35);
+  --radius:28px;
 }
 
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:system-ui,-apple-system;
-  color:var(--text-main);
-  background:linear-gradient(180deg,#2c364f,#3F4A66);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--cream);
+  background:
+    radial-gradient(circle at 18% 10%, rgba(127,184,199,.30), transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(255,216,107,.14), transparent 18%),
+    linear-gradient(135deg,#4f6380 0%, var(--night) 38%, #252944 100%);
+  overflow-x:hidden;
 }
 
-.wrap{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
+a{color:inherit;text-decoration:none}
+img,video{max-width:100%}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.35;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.38) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,216,107,.45) 1px, transparent 1px);
+  background-size:58px 58px, 97px 97px;
+  background-position:0 0, 22px 35px;
 }
 
-/* NAV */
+.wrap{max-width:1180px;margin:0 auto;padding:22px 20px 72px;position:relative}
+
 .nav{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:12px;
+  position:sticky;top:14px;z-index:30;
+  display:flex;align-items:center;gap:16px;
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,.28);
+  background:rgba(47,56,83,.72);
+  backdrop-filter:blur(18px);
   border-radius:999px;
-  background:rgba(255,255,255,.06);
+  box-shadow:0 14px 42px rgba(0,0,0,.22);
 }
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand img{width:42px;height:42px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+.brand strong{font-size:15px;line-height:1.1}
+.brand span{display:block;font-size:12px;color:rgba(255,248,234,.70);margin-top:2px}
+.navActions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.navStore{
+  font-size:12px;font-weight:700;white-space:nowrap;
+  padding:10px 12px;border-radius:999px;
+  background:rgba(255,248,234,.10);
+  border:1px solid rgba(255,248,234,.22);
+}
+.navStore:hover{background:rgba(255,216,107,.18);transform:translateY(-1px)}
 
-.brand img{width:34px;border-radius:10px}
-
-/* HERO */
 .hero{
-  margin-top:30px;
+  min-height:690px;
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-}
-
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-}
-
-.card{
-  background:rgba(255,255,255,.06);
-  border-radius:var(--radius);
-  padding:24px;
-}
-
-h1{font-size:42px;margin:10px 0}
-.lead{color:var(--text-muted);line-height:1.6}
-
-/* STORE BUTTONS */
-.storeRow{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-@media(max-width:520px){
-  .storeRow{grid-template-columns:1fr}
-}
-
-.storeBtn{
-  display:flex;
+  grid-template-columns:1.02fr .98fr;
   align-items:center;
-  gap:12px;
-  padding:14px;
-  border-radius:16px;
-
-  background: rgba(126,191,209,0.18);
-  border:1.5px solid var(--yellow);
-
-  transition:.2s;
+  gap:34px;
+  padding:54px 0 34px;
 }
 
-.storeBtn:hover{
-  transform:translateY(-2px);
-  background: rgba(126,191,209,0.28);
+.heroCopy{position:relative;z-index:2}
+.kicker{
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--raindrop-soft);font-size:12px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+  padding:10px 14px;border-radius:999px;
+}
+.kicker::before{content:"☂";color:var(--umbrella);font-size:16px;letter-spacing:0}
+h1{
+  margin:22px 0 16px;
+  font-size:clamp(42px,6vw,78px);
+  line-height:.95;letter-spacing:-.05em;
+  max-width:760px;
+}
+h1 span{color:var(--glow);text-shadow:0 0 24px rgba(255,216,107,.35)}
+.lead{font-size:clamp(16px,1.7vw,20px);line-height:1.7;color:rgba(255,248,234,.82);max-width:650px;margin:0}
+
+.ctaPanel{
+  margin-top:28px;padding:18px;border-radius:26px;
+  background:rgba(255,248,234,.10);border:1px solid rgba(255,248,234,.20);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:720px;
+}
+.storeBtn{
+  display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;
+  min-height:58px;padding:12px 14px;border-radius:20px;
+  background:linear-gradient(180deg,rgba(255,248,234,.18),rgba(255,248,234,.08));
+  border:1px solid rgba(255,248,234,.22);font-weight:850;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+.storeBtn:first-child{background:linear-gradient(180deg,rgba(233,79,87,.95),rgba(202,57,66,.95));border-color:rgba(255,255,255,.22)}
+.storeBtn:hover{transform:translateY(-2px)}
+
+.heroArt{position:relative;min-height:590px;display:grid;place-items:center}
+.raindropHalo{
+  position:absolute;width:min(94%,520px);aspect-ratio:1/1.18;
+  background:linear-gradient(180deg,rgba(127,184,199,.96),rgba(198,237,242,.70));
+  clip-path:path("M 260 8 C 360 150 487 260 487 390 C 487 525 382 610 260 610 C 138 610 33 525 33 390 C 33 260 160 150 260 8 Z");
+  box-shadow:0 32px 90px rgba(8,12,22,.35), inset 0 0 0 11px rgba(255,255,255,.36);
+  opacity:.88;
+}
+.deviceCard{
+  position:relative;z-index:2;width:min(100%,640px);border-radius:34px;
+  padding:14px;background:#0c0d12;border:3px solid rgba(255,255,255,.82);
+  box-shadow:0 34px 90px rgba(0,0,0,.42);transform:rotate(-3deg);
+}
+.videoFrame{aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:#000}
+.videoEmbed{width:100%;height:100%;display:block;border:0;background:#000;object-fit:cover}
+.floatIcon{
+  position:absolute;right:4%;bottom:8%;z-index:3;width:142px;border-radius:32px;
+  box-shadow:0 24px 60px rgba(0,0,0,.38);transform:rotate(7deg);
+  border:5px solid rgba(255,248,234,.72);
+}
+.cloudNote{
+  position:absolute;left:2%;bottom:9%;z-index:4;
+  background:rgba(255,248,234,.94);color:var(--ink);
+  padding:16px 18px;border-radius:28px 28px 28px 8px;
+  max-width:240px;font-weight:750;line-height:1.35;
+  box-shadow:0 18px 50px rgba(0,0,0,.22);
+}
+.cloudNote b{color:var(--umbrella)}
+
+.section{margin-top:22px}
+.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:16px}
+.sectionHead h2{margin:0;font-size:clamp(26px,3vw,38px);letter-spacing:-.03em}
+.sectionHead p{margin:0;color:rgba(255,248,234,.72);max-width:520px;line-height:1.6}
+
+.storyStrip{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;
+}
+.momentCard{
+  position:relative;overflow:hidden;border-radius:var(--radius);min-height:250px;
+  border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.10);
+  box-shadow:var(--shadow);
+}
+.momentCard img{width:100%;height:100%;display:block;object-fit:cover;aspect-ratio:16/10;transition:.35s ease}
+.momentCard:hover img{transform:scale(1.04)}
+.momentLabel{
+  position:absolute;left:14px;right:14px;bottom:14px;padding:14px 16px;border-radius:20px;
+  background:rgba(35,39,58,.78);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18)
+}
+.momentLabel strong{display:block;color:var(--glow);margin-bottom:3px}
+.momentLabel span{font-size:13px;color:rgba(255,248,234,.82)}
+
+.infoGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.infoCard{
+  padding:20px;border-radius:24px;background:rgba(255,248,234,.92);color:var(--ink);
+  box-shadow:0 18px 48px rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.50);
+}
+.infoCard .emoji{font-size:28px;margin-bottom:10px}
+.infoCard h3{margin:0 0 8px;font-size:16px;color:#2d354e}
+.infoCard p{margin:0;color:rgba(34,36,49,.72);font-size:14px;line-height:1.55}
+
+.reviewsWrap{
+  padding:24px;border-radius:var(--radius);background:rgba(47,56,83,.62);
+  border:1px solid rgba(255,255,255,.20);box-shadow:var(--shadow);backdrop-filter:blur(14px)
+}
+.carousel{overflow:hidden;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+.track{display:flex;transition:transform .5s ease;will-change:transform}
+.review{min-width:100%;padding:22px}
+.reviewTop{display:flex;justify-content:space-between;gap:14px;margin-bottom:12px}
+.nameLoc strong{font-size:14px}.nameLoc span{font-size:12px;color:rgba(255,248,234,.68)}
+.stars{font-size:20px;color:var(--glow);letter-spacing:.10em;white-space:nowrap}
+.review h3{margin:0 0 8px;color:var(--raindrop-soft);font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.review p{margin:0;line-height:1.7;color:rgba(255,248,234,.84);font-size:14px;white-space:pre-wrap}
+.controlsRow{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:12px}
+.dots,.arrows{display:flex;gap:8px}
+.dotBtn{width:8px;height:8px;padding:0;border-radius:99px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.10);cursor:pointer}
+.dotBtn[aria-current="true"]{background:var(--glow);box-shadow:0 0 0 5px rgba(255,216,107,.15)}
+.arrowBtn{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.10);color:var(--cream);border-radius:14px;padding:8px 11px;cursor:pointer}
+
+.instagramGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.instagramCard{
+  min-height:440px;border-radius:24px;padding:12px;background:rgba(255,248,234,.92);color:var(--ink);
+  border:1px solid rgba(255,255,255,.55);box-shadow:0 18px 48px rgba(0,0,0,.16);overflow:hidden;
+}
+.instagramSlot{
+  min-height:370px;border-radius:18px;border:2px dashed rgba(57,68,95,.25);
+  background:linear-gradient(180deg,rgba(127,184,199,.18),rgba(255,216,107,.12));
+  display:grid;place-items:center;text-align:center;padding:18px;color:rgba(34,36,49,.60);font-size:14px;line-height:1.5;
+}
+.instagramCard h3{margin:12px 6px 0;font-size:15px;color:#2d354e}
+
+footer{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.16);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:rgba(255,248,234,.70);font-size:12px}
+.footerLinks{display:flex;gap:14px;flex-wrap:wrap}
+.footerLinks a:hover{color:var(--cream)}
+
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:34px}
+  .heroArt{min-height:500px;order:-1}
+  .storyStrip,.infoGrid{grid-template-columns:1fr 1fr}
+  .instagramGrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .wrap{padding:14px 14px 54px}
+  .nav{align-items:flex-start;border-radius:26px;position:relative;top:auto;flex-direction:column}
+  .navActions{margin-left:0;width:100%;display:grid;grid-template-columns:1fr 1fr 1fr}
+  .navStore{text-align:center;justify-content:center;padding:9px 8px;font-size:11px}
+  .hero{gap:18px;padding:22px 0 20px}
+  .heroArt{min-height:390px}
+  .deviceCard{transform:rotate(0);padding:9px;border-radius:24px}
+  .videoFrame{border-radius:16px}
+  .floatIcon{width:92px;border-radius:22px;right:1%;bottom:1%}
+  .cloudNote{left:0;bottom:0;max-width:190px;font-size:13px;padding:12px 14px}
+  .ctaPanel{grid-template-columns:1fr;padding:12px;border-radius:22px}
+  .storeBtn{min-height:52px}
+  .sectionHead{display:block}.sectionHead p{margin-top:8px}
+  .storyStrip,.infoGrid,.instagramGrid{grid-template-columns:1fr}
+  .instagramCard{min-height:390px}.instagramSlot{min-height:310px}
 }
 
-.mini{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(246,200,95,.4);
-}
-
-/* VIDEO */
-.videoFrame{
-  width:100%;
-  aspect-ratio:16/9;
-  border-radius:16px;
-  overflow:hidden;
-}
-
-video{width:100%}
-
-/* FEATURES */
-.featuresGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-}
-
-@media(max-width:900px){
-  .featuresGrid{grid-template-columns:1fr}
-}
-
-.featureImg{
-  padding:10px;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.featureImg img{
-  width:calc(100% + 20px);
-  margin-left:-10px;
-  aspect-ratio:16/9;
-  object-fit:cover;
-}
-
-/* IG GRID */
-.igGrid{
-  margin-top:30px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-
-@media(max-width:900px){
-  .igGrid{grid-template-columns:1fr 1fr}
-}
-
-.igCard{
-  background:rgba(255,255,255,.05);
-  border-radius:20px;
-  overflow:hidden;
-}
-
-iframe{
-  width:100%;
-  height:100%;
-  aspect-ratio:9/16;
-  border:0;
-}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 
@@ -171,80 +243,174 @@ iframe{
 <div class="wrap">
 
 <header class="nav">
-  <img src="icon.png">
-  <strong>Pitter-Patter Raindrops</strong>
+  <div class="brand">
+    <img src="icon.png" alt="Pitter-Patter Raindrops icon">
+    <div>
+      <strong>Pitter-Patter Raindrops</strong>
+      <span>Interactive storybook for little readers</span>
+    </div>
+  </div>
+
+  <div class="navActions">
+    <a class="navStore" href="https://apps.apple.com/us/app/pitter-patter-raindrops-story/id6758880973">🍎 App Store</a>
+    <a class="navStore" href="https://play.google.com/store/apps/details?id=com.ppr.PitterpatterRaindrops">▶️ Google Play</a>
+    <a class="navStore" href="https://www.amazon.ca/Beauty-By-Zoiya-Pitter-Raindrops/dp/B0GNN1QFVL/ref=sr_1_1?crid=2GH2NT55NBUN2&dib=eyJ2IjoiMSJ9.1yfP1dtqXo3iU2r_2coSGVrRJvzGuyfyZJpUm2cH_e_GjHj071QN20LucGBJIEps.-K5uLfBb3n3ALFvriw0Ru3UgBsqlotSPz4PNPY0gp2A&dib_tag=se&keywords=pitter-patter+raindrops&qid=1771451587&s=mobile-apps&sprefix=pitter-patter+raindrops%2Cmobile-apps%2C133&sr=1-1">🛍️ Amazon</a>
+  </div>
 </header>
 
 <section class="hero">
+  <div class="heroCopy">
+    <div class="kicker">Calm, playful, early literacy support</div>
+    <h1>A cozy rainy-day story that helps little readers <span>tap, listen & learn.</span></h1>
+    <p class="lead">
+      Pitter-Patter Raindrops brings gentle narration, interactive story moments, sounds,simple mini-games & soothing whitenoise together in one calming storybook experience for ages 2–5.
+    </p>
 
-<div class="card">
-<h1>A calming story<br>for little minds</h1>
-<p class="lead">
-Interactive bedtime storytelling with soothing rain,
-gentle narration, and playful learning moments.
-</p>
+    <div class="ctaPanel" aria-label="Purchase links">
+      <a class="storeBtn" href="https://apps.apple.com/us/app/pitter-patter-raindrops-story/id6758880973">🍎 App Store</a>
+      <a class="storeBtn" href="https://play.google.com/store/apps/details?id=com.ppr.PitterpatterRaindrops">▶ Google Play</a>
+      <a class="storeBtn" href="https://www.amazon.ca/Beauty-By-Zoiya-Pitter-Raindrops/dp/B0GNN1QFVL/ref=sr_1_1?crid=2GH2NT55NBUN2&dib=eyJ2IjoiMSJ9.1yfP1dtqXo3iU2r_2coSGVrRJvzGuyfyZJpUm2cH_e_GjHj071QN20LucGBJIEps.-K5uLfBb3n3ALFvriw0Ru3UgBsqlotSPz4PNPY0gp2A&dib_tag=se&keywords=pitter-patter+raindrops&qid=1771451587&s=mobile-apps&sprefix=pitter-patter+raindrops%2Cmobile-apps%2C133&sr=1-1">🛍 Amazon</a>
+    </div>
+  </div>
 
-<div class="storeRow">
-<a class="storeBtn" href="https://apps.apple.com/us/app/pitter-patter-raindrops-story/id6758880973">
-<div class="mini"></div> App Store
-</a>
-
-<a class="storeBtn" href="https://play.google.com/store/apps/details?id=com.ppr.PitterpatterRaindrops">
-<div class="mini">▶</div> Google Play
-</a>
-
-<a class="storeBtn" href="https://www.amazon.ca/Beauty-By-Zoiya-Pitter-Raindrops/dp/B0GNN1QFVL">
-<div class="mini">🛍</div> Amazon
-</a>
-</div>
-</div>
-
-<div class="card">
-<div class="videoFrame">
-<video controls>
-<source src="pprvideo.mp4">
-</video>
-</div>
-</div>
-
+  <div class="heroArt" aria-label="App preview">
+    <div class="raindropHalo" aria-hidden="true"></div>
+    <div class="deviceCard">
+      <div class="videoFrame">
+        <video class="videoEmbed" controls playsinline preload="metadata">
+          <source src="pprvideo.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <img class="floatIcon" src="icon.png" alt="Pitter-Patter Raindrops app icon">
+    <div class="cloudNote">A tool for <b>parents, SLPs, daycare & kindergarten classrooms.</b></div>
+  </div>
 </section>
 
-<!-- FEATURES -->
-<section class="card">
-<h2>Explore the story world</h2>
-
-<div class="featuresGrid">
-<div class="featureImg"><img src="1.png"></div>
-<div class="featureImg"><img src="3.png"></div>
-<div class="featureImg"><img src="5.png"></div>
-</div>
+<section class="section">
+  <div class="sectionHead">
+    <h2>Explore the story world</h2>
+    <p>Bright moments guide interaction, while soft blues keep the experience calm and bedtime-friendly.</p>
+  </div>
+  <div class="storyStrip">
+    <article class="momentCard">
+      <img src="1.png" alt="Tap for animations preview" loading="lazy">
+      <div class="momentLabel"><strong>Tap & explore</strong><span>Gentle animations and sounds invite curiosity.</span></div>
+    </article>
+    <article class="momentCard">
+      <img src="3.png" alt="Educational & interactive mini games preview" loading="lazy">
+      <div class="momentLabel"><strong>Mini games</strong><span>Interactive play supports early engagement.</span></div>
+    </article>
+    <article class="momentCard">
+      <img src="5.png" alt="Bedtime friendly preview" loading="lazy">
+      <div class="momentLabel"><strong>Cozy wind-down</strong><span>A soft storybook tone for quiet routines.</span></div>
+    </article>
+  </div>
 </section>
 
-<!-- INSTAGRAM -->
-<section>
-<h2>From our community</h2>
-
-<div class="igGrid">
-
-<div class="igCard">
-<iframe src="https://www.instagram.com/reel/DV-bw1tCnH2/embed"></iframe>
-</div>
-
-<div class="igCard">
-<iframe src="https://www.instagram.com/reel/DUmsIjekRoQ/embed"></iframe>
-</div>
-
-<div class="igCard">
-<iframe src="https://www.instagram.com/reel//DUq5u4mEgSq/embed"></iframe>
-</div>
-
-<div class="igCard">
-<iframe src="https://www.instagram.com/reel/DVzu62IEffw/embed"></iframe>
-</div>
-
-</div>
+<section class="section">
+  <div class="sectionHead">
+    <h2>Designed for little learners</h2>
+    <p>Simple, purposeful features for families and early childhood professionals.</p>
+  </div>
+  <div class="infoGrid">
+    <article class="infoCard"><div class="emoji">🔤</div><h3>Early literacy</h3><p>Story words, rhymes, and listening moments support language exposure.</p></article>
+    <article class="infoCard"><div class="emoji">👆</div><h3>Interactive touch</h3><p>Tap-based surprises help children connect action, sound, and meaning.</p></article>
+    <article class="infoCard"><div class="emoji">🌙</div><h3>Calm routine</h3><p>Soft pacing and cozy visuals fit bedtime, quiet time, or classroom wind-down.</p></article>
+    <article class="infoCard"><div class="emoji">🎧</div><h3>Listen along</h3><p>Narration and sound moments make the story accessible and engaging.</p></article>
+  </div>
 </section>
 
+<section class="section reviewsWrap" aria-label="Reviews">
+  <div class="sectionHead">
+    <h2>Loved by families</h2>
+    <p>Real feedback from readers who use Pitter-Patter Raindrops at home.</p>
+  </div>
+
+  <div class="carousel" id="reviewCarousel">
+    <div class="track" id="reviewTrack">
+      <article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Alisha</strong><br><span>USA</span></div><div class="stars" aria-label="5 stars">★★★★★</div></div><h3>SO MUCH FUN</h3><p>"The animations and games had my daughter HOOKED. So worth the buy just to see the joy it brought her. Well done!"</p></article>
+      <article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Nicole</strong><br><span>Canada</span></div><div class="stars" aria-label="5 stars">★★★★★</div></div><h3>PERFECT READ FOR SETTLING INTO BED</h3><p>"...The combination of the rhymes and illustrations creates such a lulling atmosphere - making you feel all the ways the little mouse feels: snug, eyes heavy, and wanting to drift to sleep..."</p></article>
+      <article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Stevie</strong><br><span>Canada</span></div><div class="stars" aria-label="5 stars">★★★★★</div></div><h3>LOVELY STORY</h3><p>"My daughter adores this book! The story is super cute and the illustrations are wonderful."</p></article>
+      <article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Clari</strong><br><span>USA</span></div><div class="stars" aria-label="5 stars">★★★★★</div></div><h3>PERFECT BEDTIME STORY</h3><p>"By far our favorite bedtime read 😍
+I have it memorized now 😂"</p></article>
+    </div>
+  </div>
+
+  <div class="controlsRow" aria-label="Carousel controls">
+    <div class="dots" id="reviewDots" aria-label="Review dots">
+      <button class="dotBtn" type="button" aria-label="Go to review 1" aria-current="true"></button>
+      <button class="dotBtn" type="button" aria-label="Go to review 2"></button>
+      <button class="dotBtn" type="button" aria-label="Go to review 3"></button>
+      <button class="dotBtn" type="button" aria-label="Go to review 4"></button>
+    </div>
+    <div class="arrows">
+      <button class="arrowBtn" type="button" id="prevReview" aria-label="Previous review">‹</button>
+      <button class="arrowBtn" type="button" id="nextReview" aria-label="Next review">›</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-label="Instagram videos">
+  <div class="sectionHead">
+    <h2>Watch more moments</h2>
+  </div>
+  <div class="instagramGrid">
+    <article class="instagramCard"><div class="instagramSlot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DV-bw1tCnH2/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DV-bw1tCnH2/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DV-bw1tCnH2/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Pitter-patter Raindrops (@pitterpatter.raindrops)</a></p></div></blockquote>
+<script async src="//www.instagram.com/embed.js"></script></div></article>
+    <article class="instagramCard"><div class="instagramSlot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUmsIjekRoQ/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DUmsIjekRoQ/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DUmsIjekRoQ/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Pitter-patter Raindrops (@pitterpatter.raindrops)</a></p></div></blockquote>
+<script async src="//www.instagram.com/embed.js"></script></div></article>
+    <article class="instagramCard"><div class="instagramSlot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DVzu62IEffw/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DVzu62IEffw/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DVzu62IEffw/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Pitter-patter Raindrops (@pitterpatter.raindrops)</a></p></div></blockquote>
+<script async src="//www.instagram.com/embed.js"></script></div></article>
+    <article class="instagramCard"><div class="instagramSlot"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUq5u4mEgSq/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DUq5u4mEgSq/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DUq5u4mEgSq/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Lindsay 🏔️ (@littlesummitcreative)</a></p></div></blockquote>
+<script async src="//www.instagram.com/embed.js"></script></div></article>
+  </div>
+</section>
+
+<footer>
+  <div>© 2025 Pitter-Patter Raindrops</div>
+  <div class="footerLinks">
+    <a href="privacy.html">Privacy</a>
+    <a href="mailto:pitterpatteraindrops.zoiya@gmail.com?subject=Pitter-Patter%20Raindrops%20Inquiry">Contact Us</a>
+  </div>
+</footer>
+
 </div>
+
+<script>
+(function(){
+  const track = document.getElementById('reviewTrack');
+  const dotsWrap = document.getElementById('reviewDots');
+  const dots = Array.from(dotsWrap.querySelectorAll('.dotBtn'));
+  const prev = document.getElementById('prevReview');
+  const next = document.getElementById('nextReview');
+  let index = 0;
+  const total = dots.length;
+
+  function goTo(i){
+    index = (i + total) % total;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, di) => d.setAttribute('aria-current', di === index ? 'true' : 'false'));
+  }
+
+  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+  prev.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+
+  let timer = setInterval(() => goTo(index + 1), 6000);
+  const carousel = document.getElementById('reviewCarousel');
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', () => timer = setInterval(() => goTo(index + 1), 6000));
+
+  let startX = null;
+  carousel.addEventListener('touchstart', (e) => startX = e.touches[0].clientX, {passive:true});
+  carousel.addEventListener('touchend', (e) => {
+    if(startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 35) goTo(index + (dx < 0 ? 1 : -1));
+    startX = null;
+  }, {passive:true});
+})();
+</script>
 </body>
 </html>
