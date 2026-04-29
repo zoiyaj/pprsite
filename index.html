@@ -4,14 +4,411 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pitter-Patter Raindrops • Interactive Storybook</title>
+
 <style>
-:root{--night:#3f4a66;--deep:#2f3855;--soft:#596783;--drop:#78b8c4;--cream:#fff7e8;--gold:#f6cf67;--red:#e8525c;--ink:#20222b;--muted:rgba(255,247,232,.78);--line:rgba(255,247,232,.2);--shadow:0 24px 70px rgba(26,31,49,.35);--radius:28px}*{box-sizing:border-box}body{margin:0;font-family:ui-rounded,"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--cream);background:radial-gradient(circle at 18% 8%,rgba(120,184,196,.3),transparent 30%),radial-gradient(circle at 82% 20%,rgba(246,207,103,.18),transparent 28%),linear-gradient(135deg,var(--soft),var(--deep) 50%,#252c49);overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(circle,rgba(255,247,232,.8) 1px,transparent 1.5px),radial-gradient(circle,rgba(120,184,196,.7) 1px,transparent 1.5px);background-size:72px 72px,112px 112px;background-position:0 0,36px 24px}a{color:inherit;text-decoration:none}.wrap{max-width:1160px;margin:0 auto;padding:22px 18px 54px;position:relative;z-index:1}.nav{display:flex;align-items:center;gap:16px;position:sticky;top:12px;z-index:50;padding:12px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(63,74,102,.82);backdrop-filter:blur(16px);box-shadow:0 14px 38px rgba(22,27,45,.24)}.brand{display:flex;align-items:center;gap:12px;min-width:0}.brand img{width:44px;height:44px;border-radius:14px;border:2px solid rgba(255,247,232,.75);box-shadow:0 8px 20px rgba(0,0,0,.25)}.brand strong{display:block;font-size:15px;line-height:1.05}.brand span{font-size:12px;color:var(--muted)}.navActions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.navStore{font-size:12px;font-weight:800;padding:10px 12px;border-radius:999px;background:rgba(255,247,232,.12);border:1px solid rgba(255,247,232,.2);white-space:nowrap}.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:26px;align-items:center;padding:48px 0 26px}.heroCopy{padding:34px;border-radius:var(--radius);background:rgba(255,247,232,.1);border:1px solid var(--line);box-shadow:var(--shadow);position:relative;overflow:hidden}.heroCopy:after{content:"☂";position:absolute;right:22px;bottom:-18px;font-size:118px;color:rgba(232,82,92,.14);transform:rotate(-10deg)}.kicker{display:inline-flex;align-items:center;gap:8px;margin:0 0 16px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#bfe5ea;font-weight:900}.kicker:before{content:"";width:11px;height:15px;border-radius:65% 65% 70% 70%;background:var(--drop);transform:rotate(8deg);box-shadow:0 0 0 6px rgba(120,184,196,.12)}h1{margin:0 0 16px;font-size:clamp(39px,6vw,72px);line-height:.96;letter-spacing:-.045em}h1 span{color:var(--gold);text-shadow:0 0 22px rgba(246,207,103,.35)}.lead{margin:0;color:var(--muted);font-size:18px;line-height:1.65;max-width:60ch}.audience{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 0}.pill{font-size:12px;font-weight:900;padding:8px 10px;border:1px solid rgba(255,247,232,.22);border-radius:999px;background:rgba(47,56,85,.35)}.purchaseHeading{margin:28px 0 12px;font-size:12px;font-weight:950;letter-spacing:.16em;text-transform:uppercase;color:#bfe5ea}.storeRow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;position:relative;z-index:2}.storeBtn{display:flex;align-items:center;gap:10px;padding:13px 14px;border-radius:20px;background:var(--cream);color:var(--ink);font-weight:950;transition:.18s ease;box-shadow:0 12px 25px rgba(0,0,0,.18)}.storeBtn.primary{background:var(--red);color:white}.mini{width:36px;height:36px;display:grid;place-items:center;border-radius:13px;background:rgba(63,74,102,.12)}.previewCard{border-radius:32px;padding:14px;background:rgba(255,247,232,.12);border:1px solid var(--line);box-shadow:var(--shadow)}.videoFrame{aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#111;border:3px solid rgba(255,247,232,.9)}.videoEmbed{width:100%;height:100%;border:0;display:block;object-fit:cover;background:#000}.heroVisual{position:relative}.iconFloat{position:absolute;right:-6px;bottom:-36px;width:142px;border-radius:34px;border:4px solid var(--cream);box-shadow:0 20px 45px rgba(0,0,0,.38)}.section{margin-top:26px}.sectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}.sectionHead h2{margin:0;font-size:clamp(25px,3vw,36px);letter-spacing:-.03em}.sectionHead p{margin:0;color:var(--muted);max-width:55ch;line-height:1.5}.card{border-radius:var(--radius);border:1px solid var(--line);background:rgba(255,247,232,.1);box-shadow:var(--shadow)}.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.benefit{padding:20px}.benefitIcon{font-size:28px}.benefit h3{margin:12px 0 8px;font-size:17px}.benefit p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}.reviewsWrap{padding:22px}.reviewsTitle{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#bfe5ea;margin:0 0 14px;font-weight:950}.carousel{overflow:hidden;border-radius:22px;background:rgba(47,56,85,.34);border:1px solid rgba(255,247,232,.15)}.track{display:flex;transition:transform .5s ease}.review{min-width:100%;padding:20px}.reviewTop{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px}.nameLoc span,.review p{color:var(--muted)}.stars{color:var(--gold);letter-spacing:.12em;white-space:nowrap}.review h3{margin:0 0 8px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}.review p{margin:0;font-size:14px;line-height:1.65;white-space:pre-wrap}.controlsRow{margin-top:12px;display:flex;align-items:center;justify-content:space-between}.dots,.arrows{display:flex;gap:8px}.dotBtn{width:8px;height:8px;border-radius:999px;border:1px solid rgba(255,247,232,.3);background:rgba(255,247,232,.12);cursor:pointer;padding:0}.dotBtn[aria-current=true]{background:var(--gold);box-shadow:0 0 0 5px rgba(246,207,103,.14)}.arrowBtn{border:1px solid rgba(255,247,232,.18);background:rgba(255,247,232,.1);color:var(--cream);border-radius:14px;padding:8px 12px;cursor:pointer}.featuresGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.featureImg{border-radius:24px;overflow:hidden;background:rgba(255,247,232,.09);border:1px solid var(--line);box-shadow:0 14px 34px rgba(0,0,0,.2)}.featureImg img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}.caption{padding:12px 14px;color:var(--muted);font-size:13px;line-height:1.45}.igGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.igCard{min-height:430px;padding:14px;border-radius:24px;background:#f5efe4;color:var(--ink);transition:.18s ease;box-shadow:0 16px 36px rgba(0,0,0,.16);overflow:hidden}.igCard h3{margin:0 0 10px;font-size:15px}.igEmbedBox{border-radius:18px;overflow:hidden;background:white;min-height:360px;display:grid;place-items:center;border:1px solid rgba(32,34,43,.1)}.igPlaceholder{padding:22px;text-align:center;color:rgba(32,34,43,.62);font-size:14px;line-height:1.5}.igPlaceholder code{display:block;margin-top:10px;font-size:12px;background:rgba(63,74,102,.08);padding:8px;border-radius:10px;white-space:normal}footer{margin-top:32px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:12px}.footerLinks{display:flex;gap:14px;flex-wrap:wrap}.navStore:hover,.storeBtn:hover,.igCard:hover{transform:translateY(-2px)}@media(max-width:980px){.hero{grid-template-columns:1fr}.benefits,.igGrid{grid-template-columns:repeat(2,1fr)}.iconFloat{right:10px}}@media(max-width:720px){.wrap{padding:14px 12px 38px}.nav{align-items:flex-start;border-radius:24px;position:relative;top:0}.navActions{width:100%;margin-left:0}.navStore{flex:1;text-align:center}.hero{padding-top:24px}.heroCopy{padding:24px}.storeRow,.featuresGrid,.benefits,.igGrid{grid-template-columns:1fr}.sectionHead{display:block}.sectionHead p{margin-top:8px}.iconFloat{display:none}.igCard{min-height:360px}.igEmbedBox{min-height:300px}}@media(max-width:430px){.brand strong{font-size:13px}.brand span{display:none}h1{font-size:40px}.lead{font-size:16px}.navStore{font-size:11px;padding:9px 8px}.storeBtn{justify-content:center}.audience{display:none}}
-</style></head><body><div class="wrap">
-<header class="nav"><div class="brand"><img src="icon.png" alt="Pitter-Patter Raindrops icon"><div><strong>Pitter-Patter Raindrops</strong><span>Calming interactive storybook</span></div></div><div class="navActions"><a class="navStore" href="https://apps.apple.com/us/app/pitter-patter-raindrops-story/id6758880973">🍎 App Store</a><a class="navStore" href="https://play.google.com/store/apps/details?id=com.ppr.PitterpatterRaindrops">▶️ Google Play</a><a class="navStore" href="https://www.amazon.ca/Beauty-By-Zoiya-Pitter-Raindrops/dp/B0GNN1QFVL/ref=sr_1_1?crid=2GH2NT55NBUN2&dib=eyJ2IjoiMSJ9.1yfP1dtqXo3iU2r_2coSGVrRJvzGuyfyZJpUm2cH_e_GjHj071QN20LucGBJIEps.-K5uLfBb3n3ALFvriw0Ru3UgBsqlotSPz4PNPY0gp2A&dib_tag=se&keywords=pitter-patter+raindrops&qid=1771451587&s=mobile-apps&sprefix=pitter-patter+raindrops%2Cmobile-apps%2C133&sr=1-1">🛍️ Amazon</a></div></header>
-<section class="hero"><div class="heroCopy"><div class="kicker">Interactive read-along for ages 2–5</div><h1>A cozy storybook that helps little readers <span>settle, listen & learn.</span></h1><p class="lead">Follow a curious little mouse through rainy-day scenes, tap-to-play moments, gentle narration, and early literacy activities designed for bedtime, classrooms, therapy sessions, and quiet learning time.</p><div class="audience"><div class="pill">Parents</div><div class="pill">SLPs</div><div class="pill">Daycare Teachers</div><div class="pill">Kindergarten</div></div><div class="purchaseHeading">Download or purchase on</div><div class="storeRow"><a class="storeBtn primary" href="https://apps.apple.com/us/app/pitter-patter-raindrops-story/id6758880973"><div class="mini"></div><strong>App Store</strong></a><a class="storeBtn" href="https://play.google.com/store/apps/details?id=com.ppr.PitterpatterRaindrops"><div class="mini">▶</div><strong>Google Play</strong></a><a class="storeBtn" href="https://www.amazon.ca/Beauty-By-Zoiya-Pitter-Raindrops/dp/B0GNN1QFVL/ref=sr_1_1?crid=2GH2NT55NBUN2&dib=eyJ2IjoiMSJ9.1yfP1dtqXo3iU2r_2coSGVrRJvzGuyfyZJpUm2cH_e_GjHj071QN20LucGBJIEps.-K5uLfBb3n3ALFvriw0Ru3UgBsqlotSPz4PNPY0gp2A&dib_tag=se&keywords=pitter-patter+raindrops&qid=1771451587&s=mobile-apps&sprefix=pitter-patter+raindrops%2Cmobile-apps%2C133&sr=1-1"><div class="mini">🛍️</div><strong>Amazon</strong></a></div></div><div class="heroVisual"><div class="previewCard"><div class="videoFrame"><video class="videoEmbed" controls playsinline preload="metadata" poster="icon.png"><source src="pprvideo.mp4" type="video/mp4">Your browser does not support the video tag.</video></div></div><img class="iconFloat" src="icon.png" alt="Pitter-Patter Raindrops app icon"></div></section>
-<section class="section"><div class="sectionHead"><h2>Built for calm learning moments.</h2><p>Simple interactions, soothing visuals, and language-rich story pages support early readers without feeling overstimulating.</p></div><div class="benefits"><article class="card benefit"><div class="benefitIcon">💬</div><h3>Early language</h3><p>Rhyming words, repeatable phrases, and tap-to-hear moments encourage listening and vocabulary.</p></article><article class="card benefit"><div class="benefitIcon">🌙</div><h3>Bedtime friendly</h3><p>Deep blues, gentle sounds, and soft pacing make it feel like a wind-down ritual.</p></article><article class="card benefit"><div class="benefitIcon">👆</div><h3>Tap & explore</h3><p>Children can discover animations, sounds, and small surprises while staying inside the story world.</p></article><article class="card benefit"><div class="benefitIcon">🏫</div><h3>Educator useful</h3><p>Works for parents, daycare teachers, kindergarten rooms, and speech-language activities.</p></article></div></section>
-<section class="section card reviewsWrap" aria-label="Reviews"><h2 class="reviewsTitle">Loved by families</h2><div class="carousel" id="reviewCarousel"><div class="track" id="reviewTrack"><article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Alisha</strong><br><span>USA</span></div><div class="stars">★★★★★</div></div><h3>SO MUCH FUN</h3><p>"The animations and games had my daughter HOOKED. So worth the buy just to see the joy it brought her. Well done!"</p></article><article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Nicole</strong><br><span>Canada</span></div><div class="stars">★★★★★</div></div><h3>PERFECT READ FOR SETTLING INTO BED</h3><p>"...The combination of the rhymes and illustrations creates such a lulling atmosphere - making you feel all the ways the little mouse feels: snug, eyes heavy, and wanting to drift to sleep..."</p></article><article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Stevie</strong><br><span>Canada</span></div><div class="stars">★★★★★</div></div><h3>LOVELY STORY</h3><p>"My daughter adores this book! The story is super cute and the illustrations are wonderful."</p></article><article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Clari</strong><br><span>USA</span></div><div class="stars">★★★★★</div></div><h3>PERFECT BEDTIME STORY</h3><p>"By far our favorite bedtime read 😍
-I have it memorized now 😂"</p></article></div></div><div class="controlsRow"><div class="dots" id="reviewDots"><button class="dotBtn" type="button" aria-current="true"></button><button class="dotBtn" type="button"></button><button class="dotBtn" type="button"></button><button class="dotBtn" type="button"></button></div><div class="arrows"><button class="arrowBtn" type="button" id="prevReview">‹</button><button class="arrowBtn" type="button" id="nextReview">›</button></div></div></section>
-<section class="section"><div class="sectionHead"><h2>Peek inside the app.</h2><p>These use your same GitHub image filenames from the current homepage.</p></div><div class="featuresGrid"><div class="featureImg"><img src="1.png" alt="Tap for animations preview" loading="lazy"><div class="caption">Tap for animations, sounds, and story surprises.</div></div><div class="featureImg"><img src="3.png" alt="Educational & interactive mini games preview" loading="lazy"><div class="caption">Mini games that feel playful, simple, and age-appropriate.</div></div><div class="featureImg"><img src="5.png" alt="Bedtime friendly preview" loading="lazy"><div class="caption">A calm rainy-day story world for little readers.</div></div></div></section>
-<section class="section"><div class="sectionHead"><h2>Watch more from Pitter-Patter.</h2><p>Paste your Instagram embed code inside each card. On mobile, they stack cleanly.</p></div><div class="igGrid"><article class="igCard"><h3>Instagram Video 1</h3><div class="igEmbedBox"><div class="igPlaceholder">Paste Instagram embed code here.<code>&lt;blockquote class="instagram-media" ...&gt;&lt;/blockquote&gt;</code></div></div></article><article class="igCard"><h3>Instagram Video 2</h3><div class="igEmbedBox"><div class="igPlaceholder">Paste Instagram embed code here.<code>&lt;blockquote class="instagram-media" ...&gt;&lt;/blockquote&gt;</code></div></div></article><article class="igCard"><h3>Instagram Video 3</h3><div class="igEmbedBox"><div class="igPlaceholder">Paste Instagram embed code here.<code>&lt;blockquote class="instagram-media" ...&gt;&lt;/blockquote&gt;</code></div></div></article><article class="igCard"><h3>Instagram Video 4</h3><div class="igEmbedBox"><div class="igPlaceholder">Paste Instagram embed code here.<code>&lt;blockquote class="instagram-media" ...&gt;&lt;/blockquote&gt;</code></div></div></article></div></section>
-<footer><div>© 2025 Pitter-Patter Raindrops</div><div class="footerLinks"><a href="privacy.html">Privacy</a><a href="mailto:pitterpatteraindrops.zoiya@gmail.com?subject=Pitter-Patter%20Raindrops%20Inquiry">Contact Us</a></div></footer></div><script async src="//www.instagram.com/embed.js"></script><script>(function(){const track=document.getElementById('reviewTrack'),dots=[...document.querySelectorAll('.dotBtn')],prev=document.getElementById('prevReview'),next=document.getElementById('nextReview');let index=0,total=dots.length;function goTo(i){index=(i+total)%total;track.style.transform=`translateX(-${index*100}%)`;dots.forEach((d,di)=>d.setAttribute('aria-current',di===index?'true':'false'))}dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i)));prev.addEventListener('click',()=>goTo(index-1));next.addEventListener('click',()=>goTo(index+1));let timer=setInterval(()=>goTo(index+1),6000),carousel=document.getElementById('reviewCarousel');carousel.addEventListener('mouseenter',()=>clearInterval(timer));carousel.addEventListener('mouseleave',()=>timer=setInterval(()=>goTo(index+1),6000));let startX=null;carousel.addEventListener('touchstart',e=>startX=e.touches[0].clientX,{passive:true});carousel.addEventListener('touchend',e=>{if(startX===null)return;let dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>35)goTo(index+(dx<0?1:-1));startX=null},{passive:true})})();</script></body></html>
+:root{
+  --night:#39445f;
+  --night-2:#2d354e;
+  --raindrop:#7fb8c7;
+  --raindrop-soft:#c6edf2;
+  --umbrella:#e94f57;
+  --leaf:#d69a3c;
+  --glow:#ffd86b;
+  --cream:#fff8ea;
+  --ink:#222431;
+  --mist:rgba(255,255,255,.14);
+  --shadow:0 24px 70px rgba(17,22,38,.35);
+  --radius:28px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--cream);
+  background:
+    radial-gradient(circle at 18% 10%, rgba(127,184,199,.30), transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(255,216,107,.14), transparent 18%),
+    linear-gradient(135deg,#4f6380 0%, var(--night) 38%, #252944 100%);
+  overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none}
+img,video{max-width:100%}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.35;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.38) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,216,107,.45) 1px, transparent 1px);
+  background-size:58px 58px, 97px 97px;
+  background-position:0 0, 22px 35px;
+}
+
+.wrap{max-width:1180px;margin:0 auto;padding:22px 20px 72px;position:relative}
+
+.nav{
+  position:sticky;top:14px;z-index:30;
+  display:flex;align-items:center;gap:16px;
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,.28);
+  background:rgba(47,56,83,.72);
+  backdrop-filter:blur(18px);
+  border-radius:999px;
+  box-shadow:0 14px 42px rgba(0,0,0,.22);
+}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand img{width:42px;height:42px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+.brand strong{font-size:15px;line-height:1.1}
+.brand span{display:block;font-size:12px;color:rgba(255,248,234,.70);margin-top:2px}
+.navActions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.navStore{
+  font-size:12px;font-weight:700;white-space:nowrap;
+  padding:10px 12px;border-radius:999px;
+  background:rgba(255,248,234,.10);
+  border:1px solid rgba(255,248,234,.22);
+}
+.navStore:hover{background:rgba(255,216,107,.18);transform:translateY(-1px)}
+
+.hero{
+  min-height:690px;
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  align-items:center;
+  gap:34px;
+  padding:54px 0 34px;
+}
+
+.heroCopy{position:relative;z-index:2}
+.kicker{
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--raindrop-soft);font-size:12px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+  padding:10px 14px;border-radius:999px;
+}
+.kicker::before{content:"☂";color:var(--umbrella);font-size:16px;letter-spacing:0}
+h1{
+  margin:22px 0 16px;
+  font-size:clamp(42px,6vw,78px);
+  line-height:.95;letter-spacing:-.05em;
+  max-width:760px;
+}
+h1 span{color:var(--glow);text-shadow:0 0 24px rgba(255,216,107,.35)}
+.lead{font-size:clamp(16px,1.7vw,20px);line-height:1.7;color:rgba(255,248,234,.82);max-width:650px;margin:0}
+
+.ctaPanel{
+  margin-top:28px;padding:18px;border-radius:26px;
+  background:rgba(255,248,234,.10);border:1px solid rgba(255,248,234,.20);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:720px;
+}
+.storeBtn{
+  display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;
+  min-height:58px;padding:12px 14px;border-radius:20px;
+  background:linear-gradient(180deg,rgba(255,248,234,.18),rgba(255,248,234,.08));
+  border:1px solid rgba(255,248,234,.22);font-weight:850;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+.storeBtn:first-child{background:linear-gradient(180deg,rgba(233,79,87,.95),rgba(202,57,66,.95));border-color:rgba(255,255,255,.22)}
+.storeBtn:hover{transform:translateY(-2px)}
+
+.heroArt{position:relative;min-height:590px;display:grid;place-items:center}
+.raindropHalo{
+  position:absolute;width:min(94%,520px);aspect-ratio:1/1.18;
+  background:linear-gradient(180deg,rgba(127,184,199,.96),rgba(198,237,242,.70));
+  clip-path:path("M 260 8 C 360 150 487 260 487 390 C 487 525 382 610 260 610 C 138 610 33 525 33 390 C 33 260 160 150 260 8 Z");
+  box-shadow:0 32px 90px rgba(8,12,22,.35), inset 0 0 0 11px rgba(255,255,255,.36);
+  opacity:.88;
+}
+.deviceCard{
+  position:relative;z-index:2;width:min(100%,640px);border-radius:34px;
+  padding:14px;background:#0c0d12;border:3px solid rgba(255,255,255,.82);
+  box-shadow:0 34px 90px rgba(0,0,0,.42);transform:rotate(-3deg);
+}
+.videoFrame{aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:#000}
+.videoEmbed{width:100%;height:100%;display:block;border:0;background:#000;object-fit:cover}
+.floatIcon{
+  position:absolute;right:4%;bottom:8%;z-index:3;width:142px;border-radius:32px;
+  box-shadow:0 24px 60px rgba(0,0,0,.38);transform:rotate(7deg);
+  border:5px solid rgba(255,248,234,.72);
+}
+.cloudNote{
+  position:absolute;left:2%;bottom:9%;z-index:4;
+  background:rgba(255,248,234,.94);color:var(--ink);
+  padding:16px 18px;border-radius:28px 28px 28px 8px;
+  max-width:240px;font-weight:750;line-height:1.35;
+  box-shadow:0 18px 50px rgba(0,0,0,.22);
+}
+.cloudNote b{color:var(--umbrella)}
+
+.section{margin-top:22px}
+.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:16px}
+.sectionHead h2{margin:0;font-size:clamp(26px,3vw,38px);letter-spacing:-.03em}
+.sectionHead p{margin:0;color:rgba(255,248,234,.72);max-width:520px;line-height:1.6}
+
+.storyStrip{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;
+}
+.momentCard{
+  position:relative;overflow:hidden;border-radius:var(--radius);min-height:250px;
+  border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.10);
+  box-shadow:var(--shadow);
+}
+.momentCard img{width:100%;height:100%;display:block;object-fit:cover;aspect-ratio:16/10;transition:.35s ease}
+.momentCard:hover img{transform:scale(1.04)}
+.momentLabel{
+  position:absolute;left:14px;right:14px;bottom:14px;padding:14px 16px;border-radius:20px;
+  background:rgba(35,39,58,.78);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18)
+}
+.momentLabel strong{display:block;color:var(--glow);margin-bottom:3px}
+.momentLabel span{font-size:13px;color:rgba(255,248,234,.82)}
+
+.infoGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.infoCard{
+  padding:20px;border-radius:24px;background:rgba(255,248,234,.92);color:var(--ink);
+  box-shadow:0 18px 48px rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.50);
+}
+.infoCard .emoji{font-size:28px;margin-bottom:10px}
+.infoCard h3{margin:0 0 8px;font-size:16px;color:#2d354e}
+.infoCard p{margin:0;color:rgba(34,36,49,.72);font-size:14px;line-height:1.55}
+
+.reviewsWrap{
+  padding:24px;border-radius:var(--radius);background:rgba(47,56,83,.62);
+  border:1px solid rgba(255,255,255,.20);box-shadow:var(--shadow);backdrop-filter:blur(14px)
+}
+.carousel{overflow:hidden;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+.track{display:flex;transition:transform .5s ease;will-change:transform}
+.review{min-width:100%;padding:22px}
+.reviewTop{display:flex;justify-content:space-between;gap:14px;margin-bottom:12px}
+.nameLoc strong{font-size:14px}.nameLoc span{font-size:12px;color:rgba(255,248,234,.68)}
+.stars{font-size:20px;color:var(--glow);letter-spacing:.10em;white-space:nowrap}
+.review h3{margin:0 0 8px;color:var(--raindrop-soft);font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.review p{margin:0;line-height:1.7;color:rgba(255,248,234,.84);font-size:14px;white-space:pre-wrap}
+.controlsRow{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:12px}
+.dots,.arrows{display:flex;gap:8px}
+.dotBtn{width:8px;height:8px;padding:0;border-radius:99px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.10);cursor:pointer}
+.dotBtn[aria-current="true"]{background:var(--glow);box-shadow:0 0 0 5px rgba(255,216,107,.15)}
+.arrowBtn{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.10);color:var(--cream);border-radius:14px;padding:8px 11px;cursor:pointer}
+
+.instagramGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.instagramCard{
+  min-height:440px;border-radius:24px;padding:12px;background:rgba(255,248,234,.92);color:var(--ink);
+  border:1px solid rgba(255,255,255,.55);box-shadow:0 18px 48px rgba(0,0,0,.16);overflow:hidden;
+}
+.instagramSlot{
+  min-height:370px;border-radius:18px;border:2px dashed rgba(57,68,95,.25);
+  background:linear-gradient(180deg,rgba(127,184,199,.18),rgba(255,216,107,.12));
+  display:grid;place-items:center;text-align:center;padding:18px;color:rgba(34,36,49,.60);font-size:14px;line-height:1.5;
+}
+.instagramCard h3{margin:12px 6px 0;font-size:15px;color:#2d354e}
+
+footer{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.16);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:rgba(255,248,234,.70);font-size:12px}
+.footerLinks{display:flex;gap:14px;flex-wrap:wrap}
+.footerLinks a:hover{color:var(--cream)}
+
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:34px}
+  .heroArt{min-height:500px;order:-1}
+  .storyStrip,.infoGrid{grid-template-columns:1fr 1fr}
+  .instagramGrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .wrap{padding:14px 14px 54px}
+  .nav{align-items:flex-start;border-radius:26px;position:relative;top:auto;flex-direction:column}
+  .navActions{margin-left:0;width:100%;display:grid;grid-template-columns:1fr 1fr 1fr}
+  .navStore{text-align:center;justify-content:center;padding:9px 8px;font-size:11px}
+  .hero{gap:18px;padding:22px 0 20px}
+  .heroArt{min-height:390px}
+  .deviceCard{transform:rotate(0);padding:9px;border-radius:24px}
+  .videoFrame{border-radius:16px}
+  .floatIcon{width:92px;border-radius:22px;right:1%;bottom:1%}
+  .cloudNote{left:0;bottom:0;max-width:190px;font-size:13px;padding:12px 14px}
+  .ctaPanel{grid-template-columns:1fr;padding:12px;border-radius:22px}
+  .storeBtn{min-height:52px}
+  .sectionHead{display:block}.sectionHead p{margin-top:8px}
+  .storyStrip,.infoGrid,.instagramGrid{grid-template-columns:1fr}
+  .instagramCard{min-height:390px}.instagramSlot{min-height:310px}
+}
+
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<header class="nav">
+  <div class="brand">
+    <img src="icon.png" alt="Pitter-Patter Raindrops icon">
+    <div>
+      <strong>Pitter-Patter Raindrops</strong>
+      <span>Interactive storybook for little readers</span>
+    </div>
+  </div>
+
+  <div class="navActions">
+    <a class="navStore" href="https://apps.apple.com/us/app/pitter-patter-raindrops-story/id6758880973">🍎 App Store</a>
+    <a class="navStore" href="https://play.google.com/store/apps/details?id=com.ppr.PitterpatterRaindrops">▶️ Google Play</a>
+    <a class="navStore" href="https://www.amazon.ca/Beauty-By-Zoiya-Pitter-Raindrops/dp/B0GNN1QFVL/ref=sr_1_1?crid=2GH2NT55NBUN2&dib=eyJ2IjoiMSJ9.1yfP1dtqXo3iU2r_2coSGVrRJvzGuyfyZJpUm2cH_e_GjHj071QN20LucGBJIEps.-K5uLfBb3n3ALFvriw0Ru3UgBsqlotSPz4PNPY0gp2A&dib_tag=se&keywords=pitter-patter+raindrops&qid=1771451587&s=mobile-apps&sprefix=pitter-patter+raindrops%2Cmobile-apps%2C133&sr=1-1">🛍️ Amazon</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="heroCopy">
+    <div class="kicker">Calm, playful, early literacy support</div>
+    <h1>A cozy rainy-day story that helps little readers <span>tap, listen & learn.</span></h1>
+    <p class="lead">
+      Pitter-Patter Raindrops brings gentle narration, interactive story moments, sounds, and simple mini-games together in one calming storybook experience for ages 2–5.
+    </p>
+
+    <div class="ctaPanel" aria-label="Purchase links">
+      <a class="storeBtn" href="https://apps.apple.com/us/app/pitter-patter-raindrops-story/id6758880973">🍎 App Store</a>
+      <a class="storeBtn" href="https://play.google.com/store/apps/details?id=com.ppr.PitterpatterRaindrops">▶ Google Play</a>
+      <a class="storeBtn" href="https://www.amazon.ca/Beauty-By-Zoiya-Pitter-Raindrops/dp/B0GNN1QFVL/ref=sr_1_1?crid=2GH2NT55NBUN2&dib=eyJ2IjoiMSJ9.1yfP1dtqXo3iU2r_2coSGVrRJvzGuyfyZJpUm2cH_e_GjHj071QN20LucGBJIEps.-K5uLfBb3n3ALFvriw0Ru3UgBsqlotSPz4PNPY0gp2A&dib_tag=se&keywords=pitter-patter+raindrops&qid=1771451587&s=mobile-apps&sprefix=pitter-patter+raindrops%2Cmobile-apps%2C133&sr=1-1">🛍 Amazon</a>
+    </div>
+  </div>
+
+  <div class="heroArt" aria-label="App preview">
+    <div class="raindropHalo" aria-hidden="true"></div>
+    <div class="deviceCard">
+      <div class="videoFrame">
+        <video class="videoEmbed" controls playsinline preload="metadata">
+          <source src="pprvideo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    <img class="floatIcon" src="icon.png" alt="Pitter-Patter Raindrops app icon">
+    <div class="cloudNote">Made for <b>parents, SLPs, daycare & kindergarten classrooms.</b></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sectionHead">
+    <h2>Explore the story world</h2>
+    <p>Bright moments guide interaction, while soft blues keep the experience calm and bedtime-friendly.</p>
+  </div>
+  <div class="storyStrip">
+    <article class="momentCard">
+      <img src="1.png" alt="Tap for animations preview" loading="lazy">
+      <div class="momentLabel"><strong>Tap & explore</strong><span>Gentle animations and sounds invite curiosity.</span></div>
+    </article>
+    <article class="momentCard">
+      <img src="3.png" alt="Educational & interactive mini games preview" loading="lazy">
+      <div class="momentLabel"><strong>Mini games</strong><span>Interactive play supports early engagement.</span></div>
+    </article>
+    <article class="momentCard">
+      <img src="5.png" alt="Bedtime friendly preview" loading="lazy">
+      <div class="momentLabel"><strong>Cozy wind-down</strong><span>A soft storybook tone for quiet routines.</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sectionHead">
+    <h2>Designed for little learners</h2>
+    <p>Simple, purposeful features for families and early childhood professionals.</p>
+  </div>
+  <div class="infoGrid">
+    <article class="infoCard"><div class="emoji">🔤</div><h3>Early literacy</h3><p>Story words, rhymes, and listening moments support language exposure.</p></article>
+    <article class="infoCard"><div class="emoji">👆</div><h3>Interactive touch</h3><p>Tap-based surprises help children connect action, sound, and meaning.</p></article>
+    <article class="infoCard"><div class="emoji">🌙</div><h3>Calm routine</h3><p>Soft pacing and cozy visuals fit bedtime, quiet time, or classroom wind-down.</p></article>
+    <article class="infoCard"><div class="emoji">🎧</div><h3>Listen along</h3><p>Narration and sound moments make the story accessible and engaging.</p></article>
+  </div>
+</section>
+
+<section class="section reviewsWrap" aria-label="Reviews">
+  <div class="sectionHead">
+    <h2>Loved by families</h2>
+    <p>Real feedback from readers who use Pitter-Patter Raindrops at home.</p>
+  </div>
+
+  <div class="carousel" id="reviewCarousel">
+    <div class="track" id="reviewTrack">
+      <article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Alisha</strong><br><span>USA</span></div><div class="stars" aria-label="5 stars">★★★★★</div></div><h3>SO MUCH FUN</h3><p>"The animations and games had my daughter HOOKED. So worth the buy just to see the joy it brought her. Well done!"</p></article>
+      <article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Nicole</strong><br><span>Canada</span></div><div class="stars" aria-label="5 stars">★★★★★</div></div><h3>PERFECT READ FOR SETTLING INTO BED</h3><p>"...The combination of the rhymes and illustrations creates such a lulling atmosphere - making you feel all the ways the little mouse feels: snug, eyes heavy, and wanting to drift to sleep..."</p></article>
+      <article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Stevie</strong><br><span>Canada</span></div><div class="stars" aria-label="5 stars">★★★★★</div></div><h3>LOVELY STORY</h3><p>"My daughter adores this book! The story is super cute and the illustrations are wonderful."</p></article>
+      <article class="review"><div class="reviewTop"><div class="nameLoc"><strong>Clari</strong><br><span>USA</span></div><div class="stars" aria-label="5 stars">★★★★★</div></div><h3>PERFECT BEDTIME STORY</h3><p>"By far our favorite bedtime read 😍
+I have it memorized now 😂"</p></article>
+    </div>
+  </div>
+
+  <div class="controlsRow" aria-label="Carousel controls">
+    <div class="dots" id="reviewDots" aria-label="Review dots">
+      <button class="dotBtn" type="button" aria-label="Go to review 1" aria-current="true"></button>
+      <button class="dotBtn" type="button" aria-label="Go to review 2"></button>
+      <button class="dotBtn" type="button" aria-label="Go to review 3"></button>
+      <button class="dotBtn" type="button" aria-label="Go to review 4"></button>
+    </div>
+    <div class="arrows">
+      <button class="arrowBtn" type="button" id="prevReview" aria-label="Previous review">‹</button>
+      <button class="arrowBtn" type="button" id="nextReview" aria-label="Next review">›</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-label="Instagram videos">
+  <div class="sectionHead">
+    <h2>Watch more moments</h2>
+    <p>Replace each placeholder with your Instagram embed code when you’re ready.</p>
+  </div>
+  <div class="instagramGrid">
+    <article class="instagramCard"><div class="instagramSlot">Instagram video embed 1 goes here</div><h3>Story preview</h3></article>
+    <article class="instagramCard"><div class="instagramSlot">Instagram video embed 2 goes here</div><h3>Mini game moment</h3></article>
+    <article class="instagramCard"><div class="instagramSlot">Instagram video embed 3 goes here</div><h3>Read-along clip</h3></article>
+    <article class="instagramCard"><div class="instagramSlot">Instagram video embed 4 goes here</div><h3>Parent/teacher demo</h3></article>
+  </div>
+</section>
+
+<footer>
+  <div>© 2025 Pitter-Patter Raindrops</div>
+  <div class="footerLinks">
+    <a href="privacy.html">Privacy</a>
+    <a href="mailto:pitterpatteraindrops.zoiya@gmail.com?subject=Pitter-Patter%20Raindrops%20Inquiry">Contact Us</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const track = document.getElementById('reviewTrack');
+  const dotsWrap = document.getElementById('reviewDots');
+  const dots = Array.from(dotsWrap.querySelectorAll('.dotBtn'));
+  const prev = document.getElementById('prevReview');
+  const next = document.getElementById('nextReview');
+  let index = 0;
+  const total = dots.length;
+
+  function goTo(i){
+    index = (i + total) % total;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, di) => d.setAttribute('aria-current', di === index ? 'true' : 'false'));
+  }
+
+  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+  prev.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+
+  let timer = setInterval(() => goTo(index + 1), 6000);
+  const carousel = document.getElementById('reviewCarousel');
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', () => timer = setInterval(() => goTo(index + 1), 6000));
+
+  let startX = null;
+  carousel.addEventListener('touchstart', (e) => startX = e.touches[0].clientX, {passive:true});
+  carousel.addEventListener('touchend', (e) => {
+    if(startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 35) goTo(index + (dx < 0 ? 1 : -1));
+    startX = null;
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
